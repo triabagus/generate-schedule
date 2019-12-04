@@ -4,6 +4,7 @@ use App\Algoritma\GenerateAlgoritma;
 use App\Http\Controllers\Controller;
 use App\Models\Lecturer;
 use App\Models\Schedule;
+use App\Models\Room;
 use App\Models\Setting;
 use App\Models\Teach;
 use Excel;
@@ -70,12 +71,10 @@ class GenetikController extends Controller
             $value_schedules = Schedule::where('type', $i)->first();
             $data_kromosom[] = [
                 'value_schedules' => $value_schedules->value,
-
             ];
         }
 
-        // dd($schedules); cek crossover & mutasi
-        // return view('admin.genetik.result', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule'));
+        // dd($schedules); //cek crossover & mutasi
         return view('admin.genetik.result', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi'));
     }
 
@@ -97,4 +96,97 @@ class GenetikController extends Controller
         return redirect()->back();
     }
 
+    public function showClasses($id)
+    {
+        $years          = Teach::select('year')->groupBy('year')->pluck('year', 'year');
+        $classes        = Teach::select('class_room')->groupBy('class_room')->havingRaw('COUNT(*) > 1')->get();
+        $kromosom       = Schedule::select('type')->groupBy('type')->get()->count();
+        $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
+        $mutasi         = Setting::where('key', Setting::MUTASI)->first();
+        $value_schedule = Schedule::where('type', $id)->first();
+        $lecturer       = Lecturer::select('id', 'name')->get();
+
+        $schedules      = Schedule::orderBy('days_id', 'desc')
+            ->orderBy('times_id', 'desc')
+            ->where('type', $id)
+            ->select(
+                'schedules.id',
+                'schedules.type',
+                'schedules.teachs_id',
+                'schedules.days_id',
+                'schedules.times_id',
+                'schedules.rooms_id',
+                'schedules.value',
+                'schedules.value_process'
+                )
+            ->paginate();
+
+        if (empty($value_schedule))
+        {
+            abort(404);
+        }
+
+        for ($i = 1; $i <= $kromosom; $i++)
+        {
+            $value_schedules = Schedule::where('type', $i)->first();
+            $data_kromosom[] = [
+                'value_schedules' => $value_schedules->value,
+            ];
+        }
+
+        // dd($kromosom); //cek crossover & mutasi
+        return view('admin.genetik.classes', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer'));
+    }
+
+    public function showTeacherSearch(int $id, Request $request)
+    {
+        $teachId        = $request->teachName;
+        $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
+        $mutasi         = Setting::where('key', Setting::MUTASI)->first();
+        $teachs         = Teach::select('id','lecturers_id')->where('lecturers_id', $teachId)->get();
+        $teachsCount    = Teach::select('id','lecturers_id')->where('lecturers_id', $teachId)->get()->count();
+        
+        $lecturer       = Lecturer::select('id', 'name')->get();
+        $rooms          = Room::select('id', 'name')->get();
+
+        for ($i = 0; $i < $teachsCount; $i++)
+        {
+            $schedulesx      = Schedule::orderBy('days_id', 'desc')
+            ->orderBy('times_id', 'desc')
+            ->where('type', $id)
+            ->where('teachs_id', $teachs[$i]->id)
+            ->paginate();
+
+            // dd($teachs[$i]->id);
+        }
+        
+        // dd($schedulesx[0][0]['teachs_id']);
+
+        return view('admin.genetik.filter', compact('lecturer','schedulesx','rooms')); 
+    }
+
+    public function showClassesSearch(int $id, Request $request)
+    {
+        $classId        = $request->classId;
+        $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
+        $mutasi         = Setting::where('key', Setting::MUTASI)->first();
+        // $rooms          = Room::select('id','lecturers_id')->where('lecturers_id', $teachId)->get();
+        // $roomsCount     = Room::select('id','lecturers_id')->where('lecturers_id', $teachId)->get()->count();
+        
+        $lecturer       = Lecturer::select('id', 'name')->get();
+        $rooms          = Room::select('id', 'name')->get();
+        
+            $schedulesx      = Schedule::orderBy('days_id', 'desc')
+            ->orderBy('times_id', 'desc')
+            ->where('type', $id)
+            ->where('rooms_id', $classId)
+            ->paginate();
+
+            // dd($teachs[$i]->id);
+        
+        
+        // dd($schedulesx[0][0]['teachs_id']);
+
+        return view('admin.genetik.filterClass', compact('lecturer','schedulesx', 'rooms')); 
+    }
 }

@@ -7,9 +7,9 @@
 @section('style')
 <style type="text/css">
 .panel-body{
-       width:auto;
-       height:auto;
-       overflow:auto;
+        width:auto;
+        height:auto;
+        overflow:auto;
     }
 </style>
 @stop
@@ -47,11 +47,13 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-4">
+                            
                                 <a class="btn btn-warning btn-block" href="{{ route('admin.generates', Input::all()) }}">
                                     <span class="glyphicon glyphicon-hand-left">
                                     </span>
                                     Kembali
                                 </a>
+
                             </div>
                             <div class="col-md-4" style="padding-bottom: 3%;">
                                 <a class="btn btn-info btn-block" href="{{ route('admin.generates.excel', $id) }}">
@@ -90,7 +92,7 @@
                                     @else
                                         <li role="presentation">
                                     @endif
-                                        <a href="{{ URL::Route('admin.generates.result', $key+1) }}">
+                                        <a href="{{ URL::Route('admin.generates.classes', $key+1) }}">
                                             @if ($kromosom['value_schedules'] == 1)
                                                 Jadwal Terbaik
                                             @else
@@ -112,12 +114,12 @@
                                     <br>
                                 </h4>
                                 <h4>
-                                    Crossover :  
+                                    Crossover:  
                                     
                                     @if($crossover == null)
                                         0
                                     @else
-                                        {{ $crossover->value }}
+                                        {{ $crossover->value }} 
                                     @endif
 
                                     <br>

@@ -108,7 +108,8 @@ Route::group(['namespace' => 'Admin'], function ()
         Route::get('generates/submit', ['as' => 'admin.generates.submit', 'uses' => 'GenetikController@submit']);
         Route::get('generates/result/{id}', ['as' => 'admin.generates.result', 'uses' => 'GenetikController@result']);
         Route::get('generates/excel/{id}', ['as' => 'admin.generates.excel', 'uses' => 'GenetikController@excel']);
-
+        Route::get('generates/showClasses/{id}', ['as' => 'admin.generates.classes', 'uses' => 'GenetikController@showClasses']);
+        Route::get('generates/filterTeacher/{id}', ['as' => 'admin.generates.filterTeacher', 'uses' => 'GenetikController@showTeacherSearch']);
+        Route::get('generates/filterClasses/{id}', ['as' => 'admin.generates.filterClass', 'uses' => 'GenetikController@showClassesSearch']);
     });
 });
- 

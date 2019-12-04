@@ -124,7 +124,7 @@
                         </span>
                     </a>
                 </li>
-              </ul>
+            </ul>
             </li>
             <li>
                 <a href="{{ route('admin.user') }}">
