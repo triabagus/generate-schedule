@@ -22,19 +22,6 @@
         {!! Form::text('time_finish', null, ['class' => 'form-control timepicker input-small', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Waktu Mulai']) !!}
     </div>
 </div>
-<div class="form-group">
-    <label>
-        Sks
-    </label>
-    {!! Form::select('sks', [
-        '1' => '1',
-        '2' => '2',
-        '3' => '3',
-        '4' => '4',
-    ], null, ['class' => 'form-control select2 to-select', 'id' => 'sks', 'required','placeholder' => 'Pilih Sks']) !!}
-    <label id="sks-error" class="error" for="sks" style="display: none;">This field is required.</label>
-</div>
-
 <button class="btn btn-primary">
     Simpan
 </button>
