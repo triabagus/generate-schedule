@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\Teach;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class TeachController extends Controller
@@ -13,6 +14,7 @@ class TeachController extends Controller
     {
         $searchlecturers = $request->input('searchlecturers');
         $searchcourse    = $request->input('searchcourse');
+        $searchroom    = $request->input('searchclass');
         $teachs          = Teach::whereHas('lecturer', function ($query) use ($searchlecturers)
         {
 
@@ -26,20 +28,27 @@ class TeachController extends Controller
             {
                 $query = $query->where('courses.name', 'LIKE', '%' . $searchcourse . '%');
             }
+        })->whereHas('room', function ($query) use ($searchroom)
+        {
+            if (!empty($searchroom))
+            {
+                $query = $query->where('rooms.name', 'LIKE', '%' . $searchroom . '%');
+            }
         });
 
-        if (!empty($request->searchclass))
-        {
-            $teachs = $teachs->where('class_room', 'LIKE', '%' . $request->searchclass . '%');
-        }
+        // if (!empty($request->searchclass))
+        // {
+        //     $teachs = $teachs->where('rooms.name', 'LIKE', '%' . $request->searchclass . '%');
+        // }
 
-        if (!empty($request->searchclass))
-        {
-            $teachs = $teachs->where('class_room', 'LIKE', '%' . $request->searchclass . '%');
-        }
+        // if (!empty($request->searchclass))
+        // {
+        //     $teachs = $teachs->where('rooms.name', 'LIKE', '%' . $request->searchclass . '%');
+        // }
 
         $teachs = $teachs->orderBy('id', 'desc')->paginate(10);
 
+        // dd($teachs);
         return view('admin.teach.index', compact('teachs'));
     }
 
@@ -47,8 +56,9 @@ class TeachController extends Controller
     {
         $lecturers = Lecturer::orderBy('name', 'asc')->pluck('name', 'id');
         $courses   = Course::orderBy('name', 'asc')->pluck('name', 'id');
+        $room      = Room::orderBy('name', 'asc')->pluck('name', 'id');
 
-        return view('admin.teach.create', compact('lecturers', 'courses'));
+        return view('admin.teach.create', compact('lecturers', 'courses','room'));
     }
 
     public function store(Request $request)
@@ -77,13 +87,14 @@ class TeachController extends Controller
         $teachs    = Teach::find($id);
         $lecturers = Lecturer::orderBy('name', 'asc')->pluck('name', 'id');
         $courses   = Course::orderBy('name', 'asc')->pluck('name', 'id');
+        $room      = Room::orderBy('name', 'asc')->pluck('name', 'id');
 
         if ($teachs == null)
         {
             return view('admin.layouts.404');
         }
 
-        return view('admin.teach.edit', compact('teachs', 'lecturers', 'courses'));
+        return view('admin.teach.edit', compact('teachs', 'lecturers', 'courses','room'));
     }
 
     public function update(Request $request, $id)

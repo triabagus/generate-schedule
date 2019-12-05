@@ -88,7 +88,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                     @foreach($teachs as $key => $teach)
+                                    @foreach($teachs as $key => $teach)
                                         <tr>
                                             <td align="center">
                                                 {{ ($teachs->currentpage()-1) * $teachs->perpage() + $key + 1 }}
@@ -100,7 +100,7 @@
                                                 {{ isset($teach->course->name) ? $teach->course->name : '' }}
                                             </td>
                                             <td>
-                                                {{ $teach->class_room }}
+                                                {{ $teach->room->name }}
                                             </td>
                                             <td>
                                                 {{ $teach->year }}
