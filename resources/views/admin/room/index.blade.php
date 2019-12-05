@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-{{ $title= 'Ruangan' }}
+{{ $title= 'Kelas' }}
 @stop
 
 @section('style')
@@ -68,9 +68,6 @@
                                                 Nama Ruangan
                                             </th>
                                             <th style="text-align:center;">
-                                                Kapasitas
-                                            </th>
-                                            <th style="text-align:center;">
                                                 Jenis
                                             </th>
                                            <th colspan="2" style="text-align:center;">
@@ -93,9 +90,6 @@
                                             </td>
                                             <td>
                                                 {{ $room->name }}
-                                            </td>
-                                            <td>
-                                                {{ $room->capacity }}
                                             </td>
                                             <td>
                                                 {{ $room->type }}

@@ -29,8 +29,8 @@ class RoomsController extends Controller
     {
 
         $type = array(
-            'Teori'        => 'Teori',
-            'Laboratorium' => 'Laboratorium');
+            'Putra'         => 'Putra',
+            'Putri'         => 'Putri');
 
         return view('admin.room.create', compact('type'));
     }
@@ -40,14 +40,11 @@ class RoomsController extends Controller
         $this->validate($request, [
             'code_rooms' => 'unique:rooms,code_rooms|required',
             'namerooms'  => 'required',
-            'capacity'   => 'required',
-
         ]);
 
         $params = [
             'code_rooms' => $request->input('code_rooms'),
             'name'       => $request->input('namerooms'),
-            'capacity'   => $request->input('capacity'),
             'type'       => $request->input('type'),
         ];
 
@@ -66,8 +63,8 @@ class RoomsController extends Controller
         }
 
         $type = array(
-            'Teori'        => 'Teori',
-            'Laboratorium' => 'Laboratorium');
+            'Putra'         => 'Putra',
+            'Putri'         => 'Putri');
 
         return view('admin.room.edit', compact('rooms', 'type'));
     }
@@ -78,14 +75,12 @@ class RoomsController extends Controller
         $this->validate($request, [
             'code_rooms' => 'unique:rooms,code_rooms,' . $id . '|required',
             'namerooms'  => 'required',
-            'capacity'   => 'required',
 
         ]);
 
         $rooms             = Room::find($id);
         $rooms->code_rooms = $request->input('code_rooms');
         $rooms->name       = $request->input('namerooms');
-        $rooms->capacity   = $request->input('capacity');
         $rooms->type       = $request->input('type');
         $rooms->save();
 
