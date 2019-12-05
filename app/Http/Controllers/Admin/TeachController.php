@@ -65,14 +65,12 @@ class TeachController extends Controller
     {
         $this->validate($request, [
             'roomclass' => 'required',
-            'year'      => 'required',
             'lecturers' => 'required',
             'courses'   => 'required',
         ]);
 
         $params = [
             'class_room'   => $request->input('roomclass'),
-            'year'         => $request->input('year'),
             'lecturers_id' => $request->input('lecturers'),
             'courses_id'   => $request->input('courses'),
         ];
@@ -101,14 +99,12 @@ class TeachController extends Controller
     {
         $this->validate($request, [
             'roomclass' => 'required',
-            'year'      => 'required',
             'lecturers' => 'required',
             'courses'   => 'required',
         ]);
 
         $teachs               = Teach::find($id);
         $teachs->class_room   = $request->input('roomclass');
-        $teachs->year         = $request->input('year');
         $teachs->lecturers_id = $request->input('lecturers');
         $teachs->courses_id   = $request->input('courses');
         $teachs->save();

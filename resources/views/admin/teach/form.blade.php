@@ -19,12 +19,6 @@
     {!! Form::select('roomclass', $room, isset($teachs->class_room) ? $teachs->class_room : '' ,['class' => 'form-control select2 to-select','id' => 'roomclass', 'required', 'placeholder' => 'Pilih Kelas']) !!}    <label id="room-error" class="error" for="roomclass" style="display: none;">This field is required.</label>
     <!-- {!! Form::text('roomclass', isset($teachs->class_room) ? $teachs->class_room : '', ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukan Kelas','id' => 'roomclass']) !!} -->
 </div>
-<div class="form-group">
-     <label>
-        Tahun Pelajaran
-    </label>
-    {!! Form::text('year', null, ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukan Tahun Akademik']) !!}
-</div>
 <button class="btn btn-primary">
     Simpan
 </button>

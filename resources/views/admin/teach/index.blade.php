@@ -75,9 +75,6 @@
                                             <th style="text-align:center;">
                                                 Kelas
                                             </th>
-                                            <th style="text-align:center;">
-                                                Tahun Kurikulum
-                                            </th>
                                            <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.teach.create') }}">
                                                     <i class="fa fa-plus">
@@ -101,9 +98,6 @@
                                             </td>
                                             <td>
                                                 {{ $teach->room->name }}
-                                            </td>
-                                            <td>
-                                                {{ $teach->year }}
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">

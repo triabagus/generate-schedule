@@ -30,30 +30,20 @@ class CoursesController extends Controller
     public function create(Request $request)
     {
 
-        $type = [
-            'Teori'     => 'Teori',
-            'Praktikum' => 'Praktikum',
-        ];
-
-        return view('admin.courses.create', compact('type'));
+        return view('admin.courses.create');
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
             'code_courses' => 'unique:courses,code_courses|required',
-            'namecourses'  => 'required',
-            'sks'          => 'required',
-            'semester'     => 'required',
+            'namecourses'  => 'required'
 
         ]);
 
         $params = [
             'code_courses' => $request->input('code_courses'),
-            'name'         => $request->input('namecourses'),
-            'sks'          => $request->input('sks'),
-            'semester'     => $request->input('semester'),
-            'type'         => $request->input('type'),
+            'name'         => $request->input('namecourses')
         ];
 
         $courses = Course::create($params);
@@ -70,11 +60,7 @@ class CoursesController extends Controller
             return view('admin.layouts.404');
         }
 
-        $type = array(
-            'Teori'     => 'Teori',
-            'Praktikum' => 'Praktikum');
-
-        return view('admin.courses.edit', compact('courses', 'type'));
+        return view('admin.courses.edit', compact('courses'));
     }
 
     public function update(Request $request, $id)
@@ -82,18 +68,13 @@ class CoursesController extends Controller
 
         $this->validate($request, [
             'code_courses' => 'unique:courses,code_courses,' . $id . '|required',
-            'namecourses'  => 'required',
-            'sks'          => 'required',
-            'semester'     => 'required',
+            'namecourses'  => 'required'
 
         ]);
 
         $courses               = Course::find($id);
         $courses->code_courses = $request->input('code_courses');
         $courses->name         = $request->input('namecourses');
-        $courses->sks          = $request->input('sks');
-        $courses->semester     = $request->input('semester');
-        $courses->type         = $request->input('type');
         $courses->save();
 
         return redirect()->route('admin.courses');

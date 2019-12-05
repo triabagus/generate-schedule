@@ -19,7 +19,6 @@ class CreateTableTeachs extends Migration
             $table->integer('courses_id')->unsigned()->nullable();
             $table->integer('lecturers_id')->unsigned()->nullable();
             $table->integer('class_room')->unsigned()->nullable();
-            $table->string('year');
             $table->timestamps();
 
             $table->foreign('courses_id')->references('id')->on('courses')->OnUpdate('CASCADE')->OnDelete('CASCADE');

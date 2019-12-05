@@ -67,15 +67,6 @@
                                             <th style="text-align:center;">
                                                 Nama Mata Pelajaran
                                             </th>
-                                            <th style="text-align:center;">
-                                                SKS
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Semester
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Type
-                                            </th>
                                            <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.courses.create') }}">
                                                     <i class="fa fa-plus">
@@ -97,15 +88,7 @@
                                             <td>
                                                 {{ $course->name }}
                                             </td>
-                                            <td>
-                                                {{ $course->sks }}
-                                            </td>
-                                            <td>
-                                                {{ $course->semester }}
-                                            </td>
-                                            <td>
-                                                {{ $course->type }}
-                                            </td>
+                                            
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-warning btn-sm" href="{{ route('admin.courses.edit', $course->id) }}">
