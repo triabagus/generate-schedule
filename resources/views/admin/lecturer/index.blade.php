@@ -67,9 +67,6 @@
                                             <th style="text-align:center;">
                                                 Nama Guru
                                             </th>
-                                            <th style="text-align:center;">
-                                                Email
-                                            </th>
                                             <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.lecturer.create') }}">
                                                     <i class="fa fa-plus">
@@ -90,9 +87,6 @@
                                             </td>
                                             <td>
                                                 {{ $lecturer->name }}
-                                            </td>
-                                            <td>
-                                                {{ $lecturer->email }}
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">

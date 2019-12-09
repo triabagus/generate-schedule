@@ -18,7 +18,6 @@ class CreateTableLecturers extends Migration
             $table->increments('id');
             $table->string('nidn');
             $table->string('name');
-            $table->string('email')->unique();
             $table->timestamps();
         });
     }

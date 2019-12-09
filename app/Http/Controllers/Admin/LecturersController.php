@@ -34,14 +34,12 @@ class LecturersController extends Controller
         $this->validate($request, [
             'nidnlecturer'   => 'required',
             'name'           => 'required',
-            'emaillecturer'  => 'required',
 
         ]);
 
         $params = [
             'nidn'           => $request->input('nidnlecturer'),
             'name'           => $request->input('name'),
-            'email'          => $request->input('emaillecturer'),
         ];
 
         $lecturers = Lecturer::create($params);
@@ -66,14 +64,12 @@ class LecturersController extends Controller
         $this->validate($request, [
             'nidnlecturer'   => 'required',
             'name'           => 'required',
-            'emaillecturer'  => 'required',
 
         ]);
 
         $lecturers                 = Lecturer::find($id);
         $lecturers->nidn           = $request->input('nidnlecturer');
         $lecturers->name           = $request->input('name');
-        $lecturers->email          = $request->input('emaillecturer');
         $lecturers->save();
 
         return redirect()->route('admin.lecturers');

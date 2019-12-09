@@ -11,12 +11,6 @@
     </label>
     {!! Form::text('name', null, ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Nama ']) !!}
 </div>
-<div class="form-group">
-    <label>
-        Email
-    </label>
-    {!! Form::text('emaillecturer', isset($lecturers->email) ? $lecturers->email : '' , ['class' => 'form-control EmailFormat', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Email', 'id' => 'emaillecturer']) !!}
-</div>
 <button class="btn btn-primary">
     Simpan
 </button>
