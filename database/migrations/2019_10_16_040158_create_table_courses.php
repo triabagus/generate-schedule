@@ -18,9 +18,6 @@ class CreateTableCourses extends Migration
             $table->increments('id');
             $table->integer('code_courses');
             $table->string('name');
-            $table->string('sks');
-            $table->string('semester');
-            $table->string('type');
             $table->timestamps();
         });
     }

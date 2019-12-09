@@ -57,9 +57,7 @@
                                             <th style="text-align:center;">
                                                 Range Waktu
                                             </th>
-                                            <th style="text-align:center;">
-                                                Sks
-                                            </th>
+                                        
                                             <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.time.create') }}">
                                                     <i class="fa fa-plus">
@@ -87,9 +85,7 @@
                                             <td>
                                                 {{ $time->range }}
                                             </td>
-                                            <td>
-                                                {{ $time->sks }}
-                                            </td>
+                                            
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-warning btn-sm" href="{{ route('admin.time.edit', $time->id) }}">

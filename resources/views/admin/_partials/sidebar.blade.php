@@ -86,18 +86,18 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.teachs') }}">
-                    <i class="fa fa-university"></i>
+                <a href="{{ route('admin.rooms') }}">
+                    <i class="fa fa fa-home"></i>
                     <span>
-                        Pengampu
+                        Kelas
                     </span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.rooms') }}">
-                    <i class="fa fa fa-home"></i>
+                <a href="{{ route('admin.teachs') }}">
+                    <i class="fa fa-university"></i>
                     <span>
-                        Ruangan
+                        Kegiatan
                     </span>
                 </a>
             </li>
@@ -124,7 +124,7 @@
                         </span>
                     </a>
                 </li>
-              </ul>
+            </ul>
             </li>
             <li>
                 <a href="{{ route('admin.user') }}">

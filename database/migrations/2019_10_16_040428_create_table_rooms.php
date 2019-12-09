@@ -18,7 +18,6 @@ class CreateTableRooms extends Migration
             $table->increments('id');
             $table->integer('code_rooms');
             $table->string('name');
-            $table->string('capacity');
             $table->string('type');
             $table->timestamps();
         });

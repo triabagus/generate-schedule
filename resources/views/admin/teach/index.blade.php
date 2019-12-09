@@ -75,9 +75,6 @@
                                             <th style="text-align:center;">
                                                 Kelas
                                             </th>
-                                            <th style="text-align:center;">
-                                                Tahun Kurikulum
-                                            </th>
                                            <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.teach.create') }}">
                                                     <i class="fa fa-plus">
@@ -88,7 +85,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                     @foreach($teachs as $key => $teach)
+                                    @foreach($teachs as $key => $teach)
                                         <tr>
                                             <td align="center">
                                                 {{ ($teachs->currentpage()-1) * $teachs->perpage() + $key + 1 }}
@@ -100,10 +97,7 @@
                                                 {{ isset($teach->course->name) ? $teach->course->name : '' }}
                                             </td>
                                             <td>
-                                                {{ $teach->class_room }}
-                                            </td>
-                                            <td>
-                                                {{ $teach->year }}
+                                                {{ $teach->room->name }}
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">

@@ -2,6 +2,7 @@
 
 use App\Models\Course;
 use App\Models\Lecturer;
+// use App\Models\Room;
 use Illuminate\Database\Eloquent\Model;
 
 class Teach extends Model
@@ -17,5 +18,10 @@ class Teach extends Model
     public function course()
     {
         return $this->belongsTo(Course::class, 'courses_id');
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'class_room');
     }
 }
