@@ -19,7 +19,7 @@ class TimedayController extends Controller
     public function create(Request $request)
     {
 
-        $days  = Day::orderBy('name_day', 'asc')->pluck('name_day', 'id');
+        $days  = Day::orderBy('name_day', 'desc')->pluck('name_day', 'id');
         $times = Time::orderBy('range', 'asc')->pluck('range', 'id');
 
         return view('admin.timeday.create', compact('days', 'times'));
@@ -28,14 +28,11 @@ class TimedayController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'code_timedays' => 'required',
             'days'          => 'required',
             'times'         => 'required',
-
         ]);
 
         $params = [
-            'code_timedays' => $request->input('code_timedays'),
             'days_id'       => $request->input('days'),
             'times_id'      => $request->input('times'),
         ];
@@ -48,7 +45,7 @@ class TimedayController extends Controller
     public function edit($id)
     {
         $timedays = Timeday::find($id);
-        $days     = Day::orderBy('name_day', 'asc')->pluck('name_day', 'id');
+        $days     = Day::orderBy('name_day', 'desc')->pluck('name_day', 'id');
         $times    = Time::orderBy('range', 'asc')->pluck('range', 'id');
 
         if ($timedays == null)
@@ -62,13 +59,11 @@ class TimedayController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'code_timedays' => 'required',
             'days'          => 'required',
             'times'         => 'required',
         ]);
 
         $timedays                = Timeday::find($id);
-        $timedays->code_timedays = $request->input('code_timedays');
         $timedays->days_id       = $request->input('days');
         $timedays->times_id      = $request->input('times');
         $timedays->save();
@@ -80,7 +75,7 @@ class TimedayController extends Controller
     {
         Timeday::find($id)->delete();
 
-        return redirect()->route('admin.timedays')->with('success', 'Waktu berhalangan dosen berhasil dihapus');
+        return redirect()->route('admin.timedays')->with('success', 'Data management waktu berhasil dihapus');
     }
 
 }

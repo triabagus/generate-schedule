@@ -7,9 +7,9 @@
 @section('style')
 <style type="text/css">
 .panel-body{
-       width:auto;
-       height:auto;
-       overflow-x:auto;
+        width:auto;
+        height:auto;
+        overflow-x:auto;
     }
 </style>
 @stop
@@ -40,16 +40,14 @@
                         {!! Form::open(['role' => 'form', 'route' => 'admin.rooms', 'method' =>'get']) !!}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {!! Form::text('searchcode', Input::get('searchcode')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Kode Ruangan']) !!}
+                                {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Ruangan']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Ruangan']) !!}
+                                    
+                                    {!! Form::submit('Search',['class'=>'btn btn-default btn-block']) !!}
                                 </div>
-                            </div>
-                            <div class="col-md-12" style="padding-bottom: 15px;">
-                                {!! Form::submit('Search',['class'=>'btn btn-default btn-block']) !!}
                             </div>
                             <div class="col-md-12">
                             {!! Form::close() !!}
@@ -60,9 +58,6 @@
                                         <tr class="info">
                                             <th style="text-align:center;">
                                                 No.
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Kode Ruangan
                                             </th>
                                             <th style="text-align:center;">
                                                 Nama Ruangan
@@ -84,9 +79,6 @@
                                         <tr>
                                             <td align="center">
                                                 {{ ($rooms->currentpage()-1) * $rooms->perpage() + $key + 1 }}
-                                            </td>
-                                             <td>
-                                                {{ $room->code_rooms }}
                                             </td>
                                             <td>
                                                 {{ $room->name }}

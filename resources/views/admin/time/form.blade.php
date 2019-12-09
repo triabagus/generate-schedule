@@ -1,11 +1,4 @@
 {!! Form::hidden('idtimes', isset($times->id) ? $times->id : '', ['class' => 'form-control', 'id' => 'idday']) !!}
-
-<div class="form-group">
-    <label>
-        Kode Waktu
-    </label>
-    {!! Form::text('code_times', null, ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Kode Waktu']) !!}
-</div>
 <div class="form-group">
     <label>
         Waktu Mulai

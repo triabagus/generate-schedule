@@ -75,7 +75,7 @@
                                             <th style="text-align:center;">
                                                 Kelas
                                             </th>
-                                           <th colspan="2" style="text-align:center;">
+                                            <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.teach.create') }}">
                                                     <i class="fa fa-plus">
                                                     </i>

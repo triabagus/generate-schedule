@@ -1,12 +1,6 @@
 {!! Form::hidden('idlecturer', isset($lecturers->id) ? $lecturers->id : '', ['class' => 'form-control', 'id' => 'idlecturer']) !!}
 <div class="form-group">
     <label>
-        Kode Guru
-    </label>
-    {!! Form::text('code_lecturers', null, ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Kode Guru']) !!}
-</div>
-<div class="form-group">
-    <label>
         Nidn
     </label>
     {!! Form::text('nidnlecturer', isset($lecturers->nidn) ? $lecturers->nidn : '',  ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan NIDN ', 'id' => 'nidnlecturer']) !!}

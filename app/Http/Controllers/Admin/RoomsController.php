@@ -10,11 +10,6 @@ class RoomsController extends Controller
     {
         $rooms = Room::orderBy('id', 'desc');
 
-        if (!empty($request->searchcode))
-        {
-            $rooms = $rooms->where('code_rooms', 'LIKE', '%' . $request->searchcode . '%');
-        }
-
         if (!empty($request->searchname))
         {
             $rooms = $rooms->where('name', 'LIKE', '%' . $request->searchname . '%');
@@ -38,14 +33,12 @@ class RoomsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'code_rooms' => 'unique:rooms,code_rooms|required',
-            'namerooms'  => 'required',
+            'namerooms'  => 'required'
         ]);
 
         $params = [
-            'code_rooms' => $request->input('code_rooms'),
             'name'       => $request->input('namerooms'),
-            'type'       => $request->input('type'),
+            'type'       => $request->input('type')
         ];
 
         $rooms = Room::create($params);
@@ -73,13 +66,10 @@ class RoomsController extends Controller
     {
 
         $this->validate($request, [
-            'code_rooms' => 'unique:rooms,code_rooms,' . $id . '|required',
-            'namerooms'  => 'required',
-
+            'namerooms'  => 'required'
         ]);
 
         $rooms             = Room::find($id);
-        $rooms->code_rooms = $request->input('code_rooms');
         $rooms->name       = $request->input('namerooms');
         $rooms->type       = $request->input('type');
         $rooms->save();
@@ -91,6 +81,6 @@ class RoomsController extends Controller
     {
         Room::find($id)->delete();
 
-        return redirect()->route('admin.rooms')->with('success', 'Ruangan berhasil dihapus');
+        return redirect()->route('admin.rooms')->with('success', 'Kelas berhasil dihapus');
     }
 }

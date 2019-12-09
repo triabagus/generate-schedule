@@ -7,9 +7,9 @@
 @section('style')
 <style type="text/css">
     .panel-body{
-       width:auto;
-       height:auto;
-       overflow-x:auto;
+        width:auto;
+        height:auto;
+        overflow-x:auto;
     }
 </style>
 @stop
@@ -37,16 +37,13 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            @include('admin._partials.notifications')
                             <div class="panel-body table-responsive">
+                            @include('admin._partials.notifications')
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="info">
                                             <th style="text-align:center;">
                                                 No.
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Kode Hari
                                             </th>
                                             <th style="text-align:center;">
                                                 Nama Hari
@@ -65,9 +62,6 @@
                                         <tr>
                                             <td align="center">
                                                 {{ ($days->currentpage()-1) * $days->perpage() + $key + 1 }}
-                                            </td>
-                                             <td>
-                                                {{ $day->code_days }}
                                             </td>
                                             <td>
                                                 {{ $day->name_day }}

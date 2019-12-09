@@ -7,9 +7,9 @@
 @section('style')
 <style type="text/css">
     .panel-body{
-       width:auto;
-       height:auto;
-       overflow-x:auto;
+        width:auto;
+        height:auto;
+        overflow-x:auto;
     }
 </style>
 @stop
@@ -53,16 +53,13 @@
                             </div>
                             <div class="col-md-12">
                             {!! Form::close() !!}
-                            @include('admin._partials.notifications')
                             <div class="panel-body table-responsive">
+                            @include('admin._partials.notifications')
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="info">
                                             <th style="text-align:center;">
                                                 No.
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Kode Guru
                                             </th>
                                             <th style="text-align:center;">
                                                 NIDN
@@ -73,7 +70,7 @@
                                             <th style="text-align:center;">
                                                 Email
                                             </th>
-                                           <th colspan="2" style="text-align:center;">
+                                            <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.lecturer.create') }}">
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -88,16 +85,13 @@
                                             <td align="center">
                                                 {{ ($lecturers->currentpage()-1) * $lecturers->perpage() + $key + 1 }}
                                             </td>
-                                             <td>
-                                                {{ $lecturer->code_lecturers }}
-                                            </td>
                                             <td>
                                                 {{ $lecturer->nidn }}
                                             </td>
-                                             <td>
+                                            <td>
                                                 {{ $lecturer->name }}
                                             </td>
-                                             <td>
+                                            <td>
                                                 {{ $lecturer->email }}
                                             </td>
                                             <td class="text-center">

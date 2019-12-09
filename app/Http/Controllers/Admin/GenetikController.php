@@ -14,17 +14,18 @@ class GenetikController extends Controller
 {
     public function index(Request $request)
     {
-        $years = Teach::select('year')->groupBy('year')->pluck('year', 'year');
+        // $years = Teach::select('year')->groupBy('year')->pluck('year', 'year');
 
-        return view('admin.genetik.index', compact('years'));
+        // return view('admin.genetik.index', compact('years'));
+        return view('admin.genetik.index');
     }
 
     public function submit(Request $request)
     {
-        $years            = Teach::select('year')->groupBy('year')->pluck('year', 'year');
+        // $years            = Teach::select('year')->groupBy('year')->pluck('year', 'year');
         $input_kromosom   = $request->input('kromosom');
-        $input_year       = $request->input('year');
-        $input_semester   = $request->input('semester');
+        // $input_year       = $request->input('year');
+        // $input_semester   = $request->input('semester');
         $input_generasi   = $request->input('generasi');
         $input_crossover  = $request->input('crossover');
         $input_mutasi     = $request->input('mutasi');
@@ -33,7 +34,8 @@ class GenetikController extends Controller
         $kromosom         = $input_kromosom * $input_generasi;
         $crossover        = $input_kromosom * $input_crossover;
         $generate         = new GenerateAlgoritma;
-        $data_kromosoms   = $generate->randKromosom($kromosom, $count_teachs, $input_year, $input_semester);
+        // $data_kromosoms   = $generate->randKromosom($kromosom, $count_teachs, $input_year, $input_semester);
+        $data_kromosoms   = $generate->randKromosom($kromosom, $count_teachs);
         $result_schedules = $generate->checkPinalty();
 
         $total_gen        = Setting::firstOrNew(['key' => 'total_gen']);
@@ -51,7 +53,7 @@ class GenetikController extends Controller
 
     public function result($id)
     {
-        $years          = Teach::select('year')->groupBy('year')->pluck('year', 'year');
+        // $years       = Teach::select('year')->groupBy('year')->pluck('year', 'year');
         $kromosom       = Schedule::select('type')->groupBy('type')->get()->count();
         $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
         $mutasi         = Setting::where('key', Setting::MUTASI)->first();
@@ -75,7 +77,8 @@ class GenetikController extends Controller
         }
 
         // dd($schedules); //cek crossover & mutasi
-        return view('admin.genetik.result', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi'));
+        // return view('admin.genetik.result', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi'));
+        return view('admin.genetik.result', compact('schedules',  'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi'));
     }
 
     public function excel($id)

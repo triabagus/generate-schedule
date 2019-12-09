@@ -22,13 +22,11 @@ class DayController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'code_days' => 'unique:days,code_days|required',
-            'name_day'  => 'required',
+            'name_day'  => 'unique:days,name_day|required',
 
         ]);
 
         $params = [
-            'code_days' => $request->input('code_days'),
             'name_day'  => $request->input('name_day'),
         ];
 
@@ -52,13 +50,10 @@ class DayController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'code_days' => 'unique:days,code_days,' . $id . '|required',
             'name_day'  => 'required',
-
         ]);
 
         $days            = Day::find($id);
-        $days->code_days = $request->input('code_days');
         $days->name_day  = $request->input('name_day');
         $days->save();
 

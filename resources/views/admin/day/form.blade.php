@@ -1,11 +1,5 @@
 {!! Form::hidden('idday', isset($days->id) ? $days->id : '', ['class' => 'form-control', 'id' => 'idday']) !!}
 <div class="form-group">
-	<label>
-        Kode Hari
-    </label>
-    {!! Form::text('code_days', null, ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Kode Hari']) !!}
- </div>
-<div class="form-group">
     <label>
         Nama
     </label>

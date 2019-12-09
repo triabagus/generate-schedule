@@ -40,21 +40,18 @@
                         {!! Form::open(['role' => 'form', 'route' => 'admin.courses', 'method' =>'get']) !!}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {!! Form::text('searchcode', Input::get('searchcode')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Kode Mata Pelajaran']) !!}
+                                    {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Mata Pelajaran']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Mata Pelajaran']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="padding-bottom: 15px;">
                                 {!! Form::submit('Search',['class'=>'btn btn-default btn-block']) !!}
+                                </div>
                             </div>
                             <div class="col-md-12">
                             {!! Form::close() !!}
-                            @include('admin._partials.notifications')
                             <div class="panel-body table-responsive">
+                            @include('admin._partials.notifications')
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="info">
@@ -62,12 +59,9 @@
                                                 No.
                                             </th>
                                             <th style="text-align:center;">
-                                                Kode Mata Pelajaran
-                                            </th>
-                                            <th style="text-align:center;">
                                                 Nama Mata Pelajaran
                                             </th>
-                                           <th colspan="2" style="text-align:center;">
+                                            <th colspan="2" style="text-align:center;">
                                                 <a class="btn btn-primary" href="{{ route('admin.courses.create') }}">
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -81,9 +75,6 @@
                                         <tr>
                                             <td align="center">
                                                 {{ ($courses->currentpage()-1) * $courses->perpage() + $key + 1 }}
-                                            </td>
-                                             <td>
-                                                {{ $course->code_courses }}
                                             </td>
                                             <td>
                                                 {{ $course->name }}

@@ -16,7 +16,6 @@ class CreateTableTimes extends Migration
         Schema::create('times', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('code_times');
             $table->string('time_begin');
             $table->string('time_finish');
             $table->string('range');

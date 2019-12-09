@@ -12,11 +12,6 @@ class CoursesController extends Controller
 
         $courses = Course::orderBy('id', 'desc');
 
-        if (!empty($request->searchcode))
-        {
-            $courses = $courses->where('code_courses', 'LIKE', '%' . $request->searchcode . '%');
-        }
-
         if (!empty($request->searchname))
         {
             $courses = $courses->where('name', 'LIKE', '%' . $request->searchname . '%');
@@ -36,13 +31,10 @@ class CoursesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'code_courses' => 'unique:courses,code_courses|required',
             'namecourses'  => 'required'
-
         ]);
 
         $params = [
-            'code_courses' => $request->input('code_courses'),
             'name'         => $request->input('namecourses')
         ];
 
@@ -67,13 +59,11 @@ class CoursesController extends Controller
     {
 
         $this->validate($request, [
-            'code_courses' => 'unique:courses,code_courses,' . $id . '|required',
             'namecourses'  => 'required'
 
         ]);
 
         $courses               = Course::find($id);
-        $courses->code_courses = $request->input('code_courses');
         $courses->name         = $request->input('namecourses');
         $courses->save();
 

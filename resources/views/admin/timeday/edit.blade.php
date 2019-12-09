@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-{{ $title = 'Ubah Hari dan Waktu Manajemen Waktu' }}
+{{ $title = 'Ubah Manajemen Waktu' }}
 @stop
 
 

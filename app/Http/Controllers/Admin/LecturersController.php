@@ -32,7 +32,6 @@ class LecturersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'code_lecturers' => 'unique:lecturers,code_lecturers|required',
             'nidnlecturer'   => 'required',
             'name'           => 'required',
             'emaillecturer'  => 'required',
@@ -40,7 +39,6 @@ class LecturersController extends Controller
         ]);
 
         $params = [
-            'code_lecturers' => $request->input('code_lecturers'),
             'nidn'           => $request->input('nidnlecturer'),
             'name'           => $request->input('name'),
             'email'          => $request->input('emaillecturer'),
@@ -66,7 +64,6 @@ class LecturersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'code_lecturers' => 'unique:lecturers,code_lecturers,' . $id . '|required',
             'nidnlecturer'   => 'required',
             'name'           => 'required',
             'emaillecturer'  => 'required',
@@ -74,7 +71,6 @@ class LecturersController extends Controller
         ]);
 
         $lecturers                 = Lecturer::find($id);
-        $lecturers->code_lecturers = $request->input('code_lecturers');
         $lecturers->nidn           = $request->input('nidnlecturer');
         $lecturers->name           = $request->input('name');
         $lecturers->email          = $request->input('emaillecturer');
@@ -87,7 +83,7 @@ class LecturersController extends Controller
     {
         Lecturer::find($id)->delete();
 
-        return redirect()->route('admin.lecturers')->with('success', 'Dosen berhasil dihapus');
+        return redirect()->route('admin.lecturers')->with('success', 'Data guru berhasil dihapus');
     }
 
 }

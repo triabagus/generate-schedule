@@ -10,8 +10,10 @@ use DB;
 
 class GenerateAlgoritma
 {
-    public function randKromosom($kromosom, $count_teachs, $input_year, $input_semester)
+    // public function randKromosom($kromosom, $count_teachs, $input_year, $input_semester)
+    public function randKromosom($kromosom, $count_teachs)
     {
+        dd($count_teachs);
         Schedule::truncate();
 
         for ($i = 0; $i < $kromosom; $i++)

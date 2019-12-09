@@ -46,9 +46,6 @@
                                                 No.
                                             </th>
                                             <th style="text-align:center;">
-                                                Kode Waktu
-                                            </th>
-                                            <th style="text-align:center;">
                                                 Waktu Mulai
                                             </th>
                                             <th style="text-align:center;">
@@ -68,13 +65,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                     @foreach($times as $key => $time)
+                                    @foreach($times as $key => $time)
                                         <tr>
                                             <td align="center">
                                                 {{ ($times->currentpage()-1) * $times->perpage() + $key + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ $time->code_times }}
                                             </td>
                                             <td>
                                                 {{ $time->time_begin }}
