@@ -152,7 +152,7 @@ class LecturersTableSeeder extends Seeder
                 'name'           => 'Tri Sunyoto',
             ],
             [
-                'name'           => '`Usep',
+                'name'           => 'Usep',
             ],
             [
                 'name'           => 'Utari',

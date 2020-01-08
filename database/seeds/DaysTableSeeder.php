@@ -26,7 +26,10 @@ class DaysTableSeeder extends Seeder
                 'name_day'  => 'Kamis',
             ],
             [
-                'name_day'  => "Jum'at",
+                'name_day'  => 'Jumat',
+            ],  
+            [
+                'name_day'  => 'Sabtu',
             ],  
         ]);
     }

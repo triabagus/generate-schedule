@@ -92,13 +92,13 @@
 
                             <form name="_token" action="{{ route('admin.generates.filterClass', Request::segment(4) ) }}" id="classId-dropdown" method="get">
                                 {{ csrf_field() }}
-                                @if(!empty($schedules))
+                                @if(!empty($rooms))
                                     <select class="form-control select2" id="classId" name="classId">
                                     <option value="">--- Pilih Kelas ---</option>
-                                    @foreach($schedules as $key => $schedule)
-                                        <option value="{{ $schedule->room->id }}">
+                                    @foreach($rooms as $key => $room)
+                                        <option value="{{ $room->id }}">
                                             {{ 
-                                                isset($schedule->room->name) ? $schedule->room->name : '' 
+                                                isset($room->name) ? $room->name : '' 
                                             }}
                                         </option>
                                     @endforeach
@@ -114,73 +114,29 @@
                                     <thead>
                                         <tr class="info">
                                             <th style="text-align:center;">
-                                                No.
+                                                
                                             </th>
-                                            <th style="text-align:center;">
-                                                Hari
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Jam
-                                            </th>
-                                            
-                                            <th style="text-align:center;">
-                                                Guru Pengampu
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Mata Pelajaran
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Nama Ruangan
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Type
-                                            </th>
+                                            @if(!empty($days))
+                                                @foreach($days as $d)
+                                                    <th style="text-align:center;">
+                                                        {{ $d->name_day }}
+                                                    </th>
+                                                @endforeach
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody id="valueSearch">
-                                    @if(!empty($schedules))
-                                    @foreach($schedules as $key => $schedule)
+                                    @if(!empty($times))
+                                        @foreach($times as $t => $time)
                                         <tr>
-                                            <td align="center">
-                                                {{ $key + 1 }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->day->name_day) ? $schedule->day->name_day : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->time->range) ? $schedule->time->range : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->teach->lecturer->name) ? $schedule->teach->lecturer->name : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->teach->course->name) ? $schedule->teach->course->name : ''
-                                                }}
-                                            </td>
+                                            <td>{{$time->range}}</td>
                                             
-                                            <td >
-                                                {{
-                                                    isset($schedule->room->name) ? $schedule->room->name : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->room->type) ? $schedule->room->type : ''
-                                                }}
-                                            </td>
                                         </tr>
-                                    @endforeach
+                                        @endforeach
                                     @endif
                                     </tbody>
                                 </table>
-                                {!! $schedules->appends(Input::all())->render() !!}
+                                
                             </div>
                         </div>
                     </div>

@@ -1,15 +1,15 @@
 @extends('admin.layouts.master')
 
 @section('title')
-{{ $title= 'Pengampu' }}
+{{ $title= 'Kegiatan' }}
 @stop
 
 @section('style')
 <style type="text/css">
 .panel-body{
-       width:auto;
-       height:auto;
-       overflow-x:auto;
+        width:auto;
+        height:auto;
+        overflow-x:auto;
     }
 </style>
 @stop

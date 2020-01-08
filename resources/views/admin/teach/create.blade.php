@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-{{ $title = 'Tambah Pengampu' }}
+{{ $title = 'Tambah Kegiatan' }}
 @stop
 
 @section('content')

@@ -149,25 +149,16 @@
                                                 Jam
                                             </th>
                                             <th style="text-align:center;">
-                                                Nama Ruangan
+                                                Kelas
                                             </th>
                                             <th style="text-align:center;">
-                                                Kapasitas Ruangan
+                                                Asrama
                                             </th>
                                             <th style="text-align:center;">
                                                 Mata Pelajaran
                                             </th>
                                             <th style="text-align:center;">
-                                                Guru Pengampu
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Semester
-                                            </th>
-                                            <th style="text-align:center;">
-                                                SKS
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Kelas
+                                                Guru 
                                             </th>
                                         </tr>
                                     </thead>
@@ -177,49 +168,34 @@
                                             <td align="center">
                                                 {{ $key + 1 }}
                                             </td>
-                                            <td >
+                                            <td align="center">
                                                 {{
                                                     isset($schedule->day->name_day) ? $schedule->day->name_day : ''
                                                 }}
                                             </td>
-                                            <td >
+                                            <td align="center">
                                                 {{
                                                     isset($schedule->time->range) ? $schedule->time->range : ''
                                                 }}
                                             </td>
-                                            <td >
+                                            <td align="center">
                                                 {{
                                                     isset($schedule->room->name) ? $schedule->room->name : ''
                                                 }}
                                             </td>
-                                            <td >
+                                            <td align="center">
                                                 {{
-                                                    isset($schedule->room->capacity) ? $schedule->room->capacity : ''
+                                                    isset($schedule->room->type) ? $schedule->room->type : ''
                                                 }}
                                             </td>
-                                            <td >
+                                            <td align="center">
                                                 {{
                                                     isset($schedule->teach->course->name) ? $schedule->teach->course->name : ''
                                                 }}
                                             </td>
-                                            <td >
+                                            <td align="center">
                                                 {{
                                                     isset($schedule->teach->lecturer->name) ? $schedule->teach->lecturer->name : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->teach->course->semester) ? $schedule->teach->course->semester : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->teach->course->sks) ? $schedule->teach->course->sks : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($schedule->teach->class_room) ? $schedule->teach->class_room : ''
                                                 }}
                                             </td>
                                         </tr>

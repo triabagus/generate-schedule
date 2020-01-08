@@ -40,7 +40,7 @@
                         {!! Form::open(['role' => 'form', 'route' => 'admin.rooms', 'method' =>'get']) !!}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Ruangan']) !!}
+                                {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Kelas']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -60,7 +60,7 @@
                                                 No.
                                             </th>
                                             <th style="text-align:center;">
-                                                Nama Ruangan
+                                                Nama Kelas
                                             </th>
                                             <th style="text-align:center;">
                                                 Jenis
