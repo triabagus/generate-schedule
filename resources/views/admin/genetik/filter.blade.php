@@ -21,6 +21,9 @@
         window.location = action;
     });
 
+    dataFilter('#teachName');
+    dataFilter('#className');
+
     function dataFilter(id){
         $(id).on('change', function(e){
 
@@ -30,9 +33,6 @@
 
         });
     };
-
-    dataFilter('#teachName');
-    dataFilter('#classId');
 </script>
 @stop
 
@@ -75,7 +75,7 @@
                                     <select class="form-control select2" id="teachName" name="teachName">
                                     <option value="">--- Pilih Guru ---</option>
                                     @foreach($lecturer as $key => $lecturers)
-                                        <option value="{{ $lecturers->id }}">
+                                        <option value="{{ $lecturers->name }}">
                                             {{ 
                                                 isset($lecturers->name) ? $lecturers->name : '' 
                                             }}
@@ -88,14 +88,13 @@
                             </div>
                             
                             <div class="col-md-4" style="padding-bottom: 3%;">
-
-                            <form name="_token" action="{{ route('admin.generates.filterClass', Request::segment(4) ) }}" id="classId-dropdown" method="get">
+                            <form name="_token" action="{{ route('admin.generates.filterClass', Request::segment(4) ) }}" id="className-dropdown" method="get">
                                 {{ csrf_field() }}
                                 @if(!empty($rooms))
-                                    <select class="form-control select2" id="classId" name="classId">
+                                    <select class="form-control select2" id="className" name="className">
                                     <option value="">--- Pilih Kelas ---</option>
                                     @foreach($rooms as $key => $room)
-                                        <option value="{{ $room->id }}">
+                                        <option value="{{ $room->name }}">
                                             {{ 
                                                 isset($room->name) ? $room->name : '' 
                                             }}
@@ -104,79 +103,48 @@
                                     </select>
                                 @endif
                             </form>
-
                             </div>
                             <div class="col-md-12">
                             
                             <div class="panel-body table-responsive">
-                                <table class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr class="info">
                                             <th style="text-align:center;">
-                                                No.
+                                                
                                             </th>
-                                            <th style="text-align:center;">
-                                                Hari
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Jam
-                                            </th>
-                                            
-                                            <th style="text-align:center;">
-                                                Guru Pengampu
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Mata Pelajaran
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Nama Ruangan
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Type
-                                            </th>
+                                            @if(!empty($days))
+                                                @foreach($days as $d)
+                                                    <th style="text-align:center;">
+                                                        {{ $d->name_day }}
+                                                    </th>
+                                                @endforeach
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody id="valueSearch">
-                                    @if(!empty($schedulesx))
-                                    @foreach($schedulesx as $key => $sch)
+                                    
+                                        @foreach($times as $t => $t_value)
                                         <tr>
-                                            <td align="center">
-                                                {{ $key + 1 }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($sch->day->name_day) ? $sch->day->name_day : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($sch->time->range) ? $sch->time->range : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($sch->teach->lecturer->name) ? $sch->teach->lecturer->name : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($sch->teach->course->name) ? $sch->teach->course->name : ''
-                                                }}
-                                            </td>
-                                            
-                                            <td >
-                                                {{
-                                                    isset($sch->room->name) ? $sch->room->name : ''
-                                                }}
-                                            </td>
-                                            <td >
-                                                {{
-                                                    isset($sch->room->type) ? $sch->room->type : ''
-                                                }}
-                                            </td>
+                                            <td>{{$t_value->range}}</td>
+                                    
+                                            @foreach($days as $d)
+                                                    <td align="center">
+
+                                                        @if ( isset($schedules[$t_value->range][$d->name_day]) )
+                                                            
+                                                            @foreach($schedules[$t_value->range][$d->name_day] as $value_schedule)
+                                                                {{ $value_schedule }} <br>
+                                                            @endforeach
+                                                            
+                                                        @else
+                                                            -
+                                                        @endif                                 
+                                                    </td>
+                                            @endforeach
                                         </tr>
-                                    @endforeach
-                                    @endif
+                                        @endforeach
+                                            
                                     </tbody>
                                 </table>
                             </div>

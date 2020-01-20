@@ -113,7 +113,7 @@ class GenetikController extends Controller
         $lecturer       = Lecturer::select('id', 'name')->get();
         $rooms          = Room::select('id', 'name')->get();
 
-        $schedules      = Schedule::orderBy('days_id', 'desc')
+        $schedule      = Schedule::orderBy('days_id', 'desc')
             ->orderBy('times_id', 'desc')
             ->where('type', $id)
             ->select(
@@ -143,87 +143,111 @@ class GenetikController extends Controller
 
         $days       = Day::select('name_day')->get();
         $times      = Time::select('range')->get();
-        // $output     = '<table class="table table-bordered table-striped">
-        //             <thead><tr class="info"><th></th>';
 
-        // foreach ($days as $d) {                        
-        //     $output .=  '<th style="text-align:center;">'.$d->name_day.'</th>';
-        // }
+        $schedules  = [];
 
-        // $output .= '</tr></thead>
-        //             <tbody id="valueSearch">';
-        
-        // foreach ($times as $t) {
-        //     $output .= '<tr><td style="text-align:center;">'.$t->range.'</td>'; 
-        //     $output .= '</tr>';
-            
-        // }
+        foreach ($schedule as $s) {
+            // $schedules[] = $s->time->range;
+            foreach ($times as $t) {
+                // $schedules[] = $s->time->range;
+                if($s->time->range == $t->range){
+                    // $schedules[] = $t->range;
 
-        // $output .= '</tbody></table>';
-
-        $schedule = array();
-
-        foreach ($schedules as $s) {
-            foreach ($days as $d => $d_value) {
-                if($s->day->name_day == $d_value->name_day){
-                    $schedule["{$d}"][$s->teach->lecturer->name][] = $s->teach->course->name;
+                    $schedules["{$t->range}"][$s->day->name_day][] = $s->teach->course->name  .' - '. $s->teach->lecturer->name .' - '.$s->teach->room->name; // pelajaran guru kelas
+                    
                 }
             }
         }
-        dd($schedule); //cek crossover & mutasi
+
+        // dd($schedules); //cek crossover & mutasi
         return view('admin.genetik.classes', compact('schedules', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer', 'rooms', 'times', 'days'));
         // return view('admin.genetik.classes', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer'));
     }
 
     public function showTeacherSearch(int $id, Request $request)
     {
-        $teachId        = $request->teachName;
+        $teachName        = $request->teachName;
         $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
         $mutasi         = Setting::where('key', Setting::MUTASI)->first();
-        $teachs         = Teach::select('id','lecturers_id')->where('lecturers_id', $teachId)->get();
-        $teachsCount    = Teach::select('id','lecturers_id')->where('lecturers_id', $teachId)->get()->count();
-        
         $lecturer       = Lecturer::select('id', 'name')->get();
-        $rooms          = Room::select('id', 'name')->get();
+        $rooms          = Room::select('id', 'name')->get();        
+        $days           = Day::select('name_day')->get();
+        $times          = Time::select('range')->get();
 
-        for ($i = 0; $i < $teachsCount; $i++)
-        {
-            $schedulesx      = Schedule::orderBy('days_id', 'desc')
+        $schedule      = Schedule::orderBy('days_id', 'desc')
             ->orderBy('times_id', 'desc')
             ->where('type', $id)
-            ->where('teachs_id', $teachs[$i]->id)
+            ->select(
+                'schedules.id',
+                'schedules.type',
+                'schedules.teachs_id',
+                'schedules.days_id',
+                'schedules.times_id',
+                'schedules.rooms_id',
+                'schedules.value',
+                'schedules.value_process'
+                )
             ->paginate();
 
-            // dd($teachs[$i]->id);
-        }
-        
-        // dd($schedulesx[0][0]['teachs_id']);
+        $schedules  = [];
 
-        return view('admin.genetik.filter', compact('lecturer','schedulesx','rooms')); 
+        foreach ($schedule as $s) {
+            // $schedules[] = $s->time->range;
+            foreach ($times as $t) {
+                // $schedules[] = $s->time->range;
+                if($s->time->range == $t->range && $s->teach->lecturer->name == $teachName){
+                    // $schedules[] = $t->range;
+
+                    $schedules["{$t->range}"][$s->day->name_day][] = $s->teach->course->name  .' - '. $s->teach->lecturer->name .' - '.$s->teach->room->name; // pelajaran guru kelas
+                    
+                }
+            }
+        }
+
+        return view('admin.genetik.filter', compact('lecturer','schedules','rooms','times','days','teachs')); 
     }
 
     public function showClassesSearch(int $id, Request $request)
     {
-        $classId        = $request->classId;
+        $className      = $request->className;
         $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
         $mutasi         = Setting::where('key', Setting::MUTASI)->first();
-        // $rooms          = Room::select('id','lecturers_id')->where('lecturers_id', $teachId)->get();
-        // $roomsCount     = Room::select('id','lecturers_id')->where('lecturers_id', $teachId)->get()->count();
         
         $lecturer       = Lecturer::select('id', 'name')->get();
         $rooms          = Room::select('id', 'name')->get();
+        $days           = Day::select('name_day')->get();
+        $times          = Time::select('range')->get();
         
-            $schedulesx      = Schedule::orderBy('days_id', 'desc')
+        $schedule      = Schedule::orderBy('days_id', 'desc')
             ->orderBy('times_id', 'desc')
             ->where('type', $id)
-            ->where('rooms_id', $classId)
+            ->select(
+                'schedules.id',
+                'schedules.type',
+                'schedules.teachs_id',
+                'schedules.days_id',
+                'schedules.times_id',
+                'schedules.rooms_id',
+                'schedules.value',
+                'schedules.value_process'
+                )
             ->paginate();
 
-            // dd($teachs[$i]->id);
-        
-        
-        // dd($schedulesx[0][0]['teachs_id']);
+        $schedules  = [];
 
-        return view('admin.genetik.filterClass', compact('lecturer','schedulesx', 'rooms')); 
+        foreach ($schedule as $s) {
+            // $schedules[] = $s->time->range;
+            foreach ($times as $t) {
+                // $schedules[] = $s->time->range;
+                if($s->time->range == $t->range && $s->teach->room->name == $className){
+                    // $schedules[] = $t->range;
+
+                    $schedules["{$t->range}"][$s->day->name_day][] = $s->teach->course->name  .' - '. $s->teach->lecturer->name .' - '.$s->teach->room->name; // pelajaran guru kelas
+                    
+                }
+            }
+        }
+
+        return view('admin.genetik.filterClass', compact('lecturer','schedules','rooms','times','days','teachs')); 
     }
 }

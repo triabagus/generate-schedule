@@ -42,6 +42,7 @@ class GenerateAlgoritma
             
             $data[] = $values;
         }
+        
 
         return $data;
     }
@@ -100,17 +101,17 @@ class GenerateAlgoritma
         // End
 
 
-        // $schedules = Schedule::where('days_id', Schedule::FRIDAY)->whereIn('times_id', [12, 19, 24])->get();
+        $schedules = Schedule::where('days_id', Schedule::FRIDAY)->whereIn('times_id', [6, 5, 4])->get();
 
-        // if (!empty($schedules))
-        // {
-        //     foreach ($schedules as $key => $schedule)
-        //     {
-        //         $schedule->value         = $schedule->value + 1;
-        //         $schedule->value_process = $schedule->value_process . "+ 1 ";
-        //         $schedule->save();
-        //     }
-        // }
+        if (!empty($schedules))
+        {
+            foreach ($schedules as $key => $schedule)
+            {
+                $schedule->value         = $schedule->value + 1;
+                $schedule->value_process = $schedule->value_process . "+ 1 ";
+                $schedule->save();
+            }
+        }
 
         $time_not_availables = Timenotavailable::get();
 
@@ -141,7 +142,7 @@ class GenerateAlgoritma
             }
         }
 
-        $schedules = Schedule::get();
+        $schedules  = Schedule::get();
 
         foreach ($schedules as $key => $schedule)
         {
