@@ -113,3 +113,17 @@ Route::group(['namespace' => 'Admin'], function ()
         Route::get('generates/filterClasses/{id}', ['as' => 'admin.generates.filterClass', 'uses' => 'GenetikController@showClassesSearch']);
     });
 });
+
+Route::get('/dashboard','AdminController@dashboard');
+// Route::get('/dashboard','AdminController@dashboard');
+
+Route::group(['namespace' => 'Newtemp'], function (){
+    //Lecturer
+    Route::get('lecturers', ['as' => 'new.lecturer', 'uses' => 'LecturersController@index']);
+    Route::get('lecturers/create', ['as' => 'new.lecturer.create', 'uses' => 'LecturersController@create']);
+    Route::post('lecturers/create', ['as' => 'new.lecturer.store', 'uses' => 'LecturersController@store']);
+    Route::get('lecturers/edit/{id}', ['as' => 'new.lecturer.edit', 'uses' => 'LecturersController@edit']);
+    Route::post('lecturers/update/{id?}', ['as' => 'new.lecturer.update', 'uses' => 'LecturersController@update']);
+    Route::delete('lecturers/delete/{id}', ['as' => 'new.lecturer.delete', 'uses' => 'LecturersController@destroy']);
+});
+
