@@ -9,7 +9,8 @@ use App\Models\Timenotavailable;
 use DB;
 
 class GenerateAlgoritma
-{
+{   
+
     // public function randKromosom($kromosom, $count_teachs, $input_year, $input_semester)
     public function randKromosom($kromosom, $count_teachs)
     {
@@ -28,7 +29,7 @@ class GenerateAlgoritma
                 $day   = Day::inRandomOrder()->first(); // random semua hari
                 $teach = Teach::inRandomOrder()->first(); // random semua guru
                 $time  = Time::inRandomOrder()->first(); // random semua waktu
-
+                
                 $params = [
                     'teachs_id' => $teach->id,
                     'days_id'   => $day->id,
@@ -38,6 +39,7 @@ class GenerateAlgoritma
                 ];
 
                 $schedule = Schedule::create($params);
+                dd($schedule);
             }
             
             $data[] = $values;
@@ -49,7 +51,6 @@ class GenerateAlgoritma
 
     public function checkPinalty()
     {
-
         // Group kegiatan, hari, waktu dan type
         $schedules = Schedule::select(DB::raw('teachs_id, days_id, times_id, type, count(*) as `jumlah`'))
             ->groupBy('teachs_id')

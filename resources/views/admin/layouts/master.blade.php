@@ -19,6 +19,7 @@
 
         <link rel="stylesheet" href="{{ asset('admin/bootstrap/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}"/>
+        
         <link rel="stylesheet" href="{{ asset('admin/dist/css/skins/_all-skins.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/plugins/datepicker/datepicker3.css') }}">
@@ -48,7 +49,7 @@
             </div>
             <strong>
                 Copyright &copy; <?php echo Date('Y'); ?>
-            </footer>
+        </footer>
             <div class="control-sidebar-bg">
             </div>
         </div>
@@ -67,4 +68,5 @@
         @include('admin._partials.js')
         @yield('script')
     </body>
-</html>
+</html>  
+
