@@ -37,6 +37,8 @@ class GenetikController extends Controller
         $crossover        = $input_kromosom * $input_crossover;
         $generate         = new GenerateAlgoritma;
         // $data_kromosoms   = $generate->randKromosom($kromosom, $count_teachs, $input_year, $input_semester);
+        // $testing = $generate->randomingProcess(0);
+        // dd($testing);
         $data_kromosoms   = $generate->randKromosom($kromosom, $count_teachs);
         $result_schedules = $generate->checkPinalty();
 
@@ -60,7 +62,9 @@ class GenetikController extends Controller
         $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
         $mutasi         = Setting::where('key', Setting::MUTASI)->first();
         $value_schedule = Schedule::where('type', $id)->first();
-        $schedules      = Schedule::orderBy('days_id', 'desc')
+        $schedules      = Schedule::join('teachs', 'teachs.id', '=', 'schedules.teachs_id')
+            ->join('lecturers', 'lecturers.id', '=', 'teachs.lecturers_id')
+            ->orderBy('lecturers_id', 'desc')
             ->orderBy('times_id', 'desc')
             ->where('type', $id)
             ->paginate();
@@ -170,7 +174,7 @@ class GenetikController extends Controller
                 }
             }
         }
-        dd($schedule); //cek crossover & mutasi
+        // dd($schedule); //cek crossover & mutasi
         return view('admin.genetik.classes', compact('schedules', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer', 'rooms', 'times', 'days'));
         // return view('admin.genetik.classes', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer'));
     }
