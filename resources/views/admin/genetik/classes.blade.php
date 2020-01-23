@@ -22,7 +22,7 @@
     });
 
     dataFilter('#teachName');
-    dataFilter('#classId');
+    dataFilter('#className');
 
     function dataFilter(id){
         $(id).on('change', function(e){
@@ -76,7 +76,7 @@
                                     <select class="form-control select2" id="teachName" name="teachName">
                                     <option value="">--- Pilih Guru ---</option>
                                     @foreach($lecturer as $key => $lecturers)
-                                        <option value="{{ $lecturers->id }}">
+                                        <option value="{{ $lecturers->name }}">
                                             {{ 
                                                 isset($lecturers->name) ? $lecturers->name : '' 
                                             }}
@@ -90,13 +90,13 @@
                             
                             <div class="col-md-4" style="padding-bottom: 3%;">
 
-                            <form name="_token" action="{{ route('admin.generates.filterClass', Request::segment(4) ) }}" id="classId-dropdown" method="get">
+                            <form name="_token" action="{{ route('admin.generates.filterClass', Request::segment(4) ) }}" id="className-dropdown" method="get">
                                 {{ csrf_field() }}
                                 @if(!empty($rooms))
-                                    <select class="form-control select2" id="classId" name="classId">
+                                    <select class="form-control select2" id="className" name="className">
                                     <option value="">--- Pilih Kelas ---</option>
                                     @foreach($rooms as $key => $room)
-                                        <option value="{{ $room->id }}">
+                                        <option value="{{ $room->name }}">
                                             {{ 
                                                 isset($room->name) ? $room->name : '' 
                                             }}
@@ -126,14 +126,28 @@
                                         </tr>
                                     </thead>
                                     <tbody id="valueSearch">
-                                    @if(!empty($times))
-                                        @foreach($times as $t => $time)
+                                    
+                                        @foreach($times as $t => $t_value)
                                         <tr>
-                                            <td>{{$time->range}}</td>
-                                            
+                                            <td>{{$t_value->range}}</td>
+                                    
+                                            @foreach($days as $d)
+                                                    <td align="center">
+
+                                                        @if ( isset($schedules[$t_value->range][$d->name_day]) )
+                                                            
+                                                            @foreach($schedules[$t_value->range][$d->name_day] as $value_schedule)
+                                                                {{ $value_schedule }} <br>
+                                                            @endforeach
+                                                            
+                                                        @else
+                                                            -
+                                                        @endif                                 
+                                                    </td>
+                                            @endforeach
                                         </tr>
                                         @endforeach
-                                    @endif
+                                            
                                     </tbody>
                                 </table>
                                 
