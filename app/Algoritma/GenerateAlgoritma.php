@@ -9,7 +9,67 @@ use App\Models\Timenotavailable;
 use DB;
 
 class GenerateAlgoritma
-{   
+{
+    public function randomingProcess($i)
+    {
+        $teach = Teach::inRandomOrder()->first();
+        $day = Day::inRandomOrder()->first();
+        $time = Time::inRandomOrder()->first();
+        $type = $i + 1;
+
+        $params = [
+            'teachs_id' => $teach->id,
+            'days_id' => $day->id,
+            'times_id' => $time->id,
+            'rooms_id' => $teach->class_room,
+            'type' => $type
+        ];
+        
+        // filter agar teach_id tidak terulang
+        $check_teach_id = Schedule::where('teachs_id', '=', $teach->id)
+            ->where('type', '=', $type) 
+            ->first();
+
+        // filter agar satu guru tidak memiliki hari dan waktu mengajar yang sama 2 kali
+        $check_lecturers_id = Schedule::join('teachs', 'teachs.id', '=', 'schedules.teachs_id')
+            ->join('lecturers', 'lecturers.id', '=', 'teachs.lecturers_id')
+            ->where('lecturers_id', '=', $teach->lecturers_id)
+            ->where('days_id', '=', $day->id)
+            ->where('times_id', '=', $time->id)
+            ->where('type', '=', $type)
+            ->first();
+
+        // filter agar satu kelas tidak memiliki hari dan waktu pelajaran yang sama 2 kali
+        $check_class_id = Schedule::where('rooms_id', '=', $teach->class_room)
+            ->where('days_id', '=', $day->id)
+            ->where('times_id', '=', $time->id)
+            ->where('type', '=', $type)
+            ->first();
+            
+        // filter guru tidak bisa mengajar pada waktu tertentu
+        $check_timenotavailable = Timenotavailable::where('lecturers_id', '=', $teach->lecturers_id)
+            ->where('days_id', '=', $day->id)
+            ->where('times_id', '=', $time->id)
+            ->first();
+
+        if($check_teach_id)
+        {
+            return $this->randomingProcess($i); 
+        } else if($check_timenotavailable)
+        {
+            return $this->randomingProcess($i);
+        } else if($check_lecturers_id)
+        {
+            return $this->randomingProcess($i);
+        } else if($check_class_id)
+        {
+            return $this->randomingProcess($i);
+        } else 
+        {
+            $insert = Schedule::create($params);
+            return $insert;
+        }
+    }
 
     // public function randKromosom($kromosom, $count_teachs, $input_year, $input_semester)
     public function randKromosom($kromosom, $count_teachs)
@@ -26,31 +86,46 @@ class GenerateAlgoritma
                 //     $query->where('courses.semester', $input_semester);
                 // }); // random guru berdasarkan semester
 
-                $day   = Day::inRandomOrder()->first(); // random semua hari
-                $teach = Teach::inRandomOrder()->first(); // random semua guru
-                $time  = Time::inRandomOrder()->first(); // random semua waktu
-                
-                $params = [
-                    'teachs_id' => $teach->id,
-                    'days_id'   => $day->id,
-                    'times_id'  => $time->id,
-                    'rooms_id'  => $teach->class_room,
-                    'type'      => $i + 1,
-                ];
+                $this->randomingProcess($i);
 
-                $schedule = Schedule::create($params);
-                dd($schedule);
+                // $day   = Day::inRandomOrder()->first(); // random semua hari
+                // $teach = Teach::inRandomOrder()->first(); // random semua guru
+                // $time  = Time::inRandomOrder()->first(); // random semua waktu
+
+                // $params = [
+                //     'teachs_id' => $teach->id,
+                //     'days_id'   => $day->id,
+                //     'times_id'  => $time->id,
+                //     'rooms_id'  => $teach->class_room,
+                //     'type'      => $i + 1,
+                // ];
+
+                // $schedule = Schedule::create($params);
             }
             
             $data[] = $values;
         }
-        
-
         return $data;
     }
 
     public function checkPinalty()
     {
+
+        //Join (kegiatan.kegiatan_id = schedule.kegiatan_id) & Join (pelajaran.pelajaran_id = kegiatan.kegiatan_id) Group pelajaran, hari, waktu dan type 
+        $schedules = Schedule::join('teachs', 'teachs.id', '=', 'schedules.teachs_id')
+            ->join('lecturers', 'lecturers.id', '=', 'teachs.lecturers_id')
+            ->select(DB::raw('lecturers_id, days_id, times_id, type, count(*) as `jumlah`'))
+            ->groupBy('lecturers_id')
+            ->groupBy('days_id')
+            ->groupBy('times_id')
+            ->groupBy('type')
+            ->having('jumlah', '>', 1)
+            ->get();
+
+        $result_schedules = $this->increaseProccess($schedules);
+        // dd($result_schedules);
+        // End
+
         // Group kegiatan, hari, waktu dan type
         $schedules = Schedule::select(DB::raw('teachs_id, days_id, times_id, type, count(*) as `jumlah`'))
             ->groupBy('teachs_id')
@@ -73,6 +148,7 @@ class GenerateAlgoritma
             ->get();
 
         $result_schedules = $this->increaseProccess($schedules);
+        // dd($result_schedules);
         // End
 
         // Group waktu, hari, kelas dan type 
@@ -84,22 +160,10 @@ class GenerateAlgoritma
             ->having('jumlah', '>', 1)
             ->get();
 
-        $result_schedules = $this->increaseProccess($schedules);
+        // $result_schedules = $this->increaseProccess($schedules);
         // End
 
-        //Join (kegiatan.kegiatan_id = schedule.kegiatan_id) & Join (pelajaran.pelajaran_id = kegiatan.kegiatan_id) Group pelajaran, hari, waktu dan type 
-        $schedules = Schedule::join('teachs', 'teachs.id', '=', 'schedules.teachs_id')
-            ->join('lecturers', 'lecturers.id', '=', 'teachs.lecturers_id')
-            ->select(DB::raw('lecturers_id, days_id, times_id, type, count(*) as `jumlah`'))
-            ->groupBy('lecturers_id')
-            ->groupBy('days_id')
-            ->groupBy('times_id')
-            ->groupBy('type')
-            ->having('jumlah', '>', 1)
-            ->get();
-
-        $result_schedules = $this->increaseProccess($schedules);
-        // End
+        
 
 
         $schedules = Schedule::where('days_id', Schedule::FRIDAY)->whereIn('times_id', [6, 5, 4])->get();
@@ -168,7 +232,9 @@ class GenerateAlgoritma
                     {
                         $schedule_where->value         = $schedule_where->value + ($schedule->jumlah - 1);
                         $schedule_where->value_process = $schedule_where->value_process . " + " . ($schedule->jumlah - 1);
+                        // dd($schedule_wheres);
                         $schedule_where->save();
+
                     }
                 }
             }
