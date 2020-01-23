@@ -24,6 +24,6 @@ class SiteController extends Controller
         $times     = Time::count();
         $schedules = Schedule::count();
 
-        return view('admin.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules'));
+        return view('admin-news.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules'));
     }
 }
