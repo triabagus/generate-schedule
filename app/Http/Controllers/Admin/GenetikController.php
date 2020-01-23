@@ -130,7 +130,7 @@ class GenetikController extends Controller
                 'schedules.value',
                 'schedules.value_process'
                 )
-            ->paginate();
+            ->get();
 
         if (empty($value_schedule))
         {
@@ -191,7 +191,7 @@ class GenetikController extends Controller
                 'schedules.value',
                 'schedules.value_process'
                 )
-            ->paginate();
+            ->get();
 
         $schedules  = [];
 
@@ -235,7 +235,7 @@ class GenetikController extends Controller
                 'schedules.value',
                 'schedules.value_process'
                 )
-            ->paginate();
+            ->get();
 
         $schedules  = [];
 
