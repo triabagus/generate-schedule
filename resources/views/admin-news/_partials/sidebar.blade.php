@@ -26,16 +26,9 @@
                                     <div class="dropdown-menu animated flipInY" aria-labelledby="Userdd">
                                         <a class="dropdown-item" href="javascript:void(0)">
                                             <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="javascript:void(0)">
                                             <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{ route('admin.logout') }}">
-                                            <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,25 +56,25 @@
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
                                     <a href="{{ route('admin.timedays') }}" class="sidebar-link">
-                                        <i class="mdi mdi-octagram"></i>
+                                        <i class="far fa-calendar-alt"></i>
                                         <span class="hide-menu"> Management Waktu</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="{{ route('admin.times') }}" class="sidebar-link">
-                                        <i class="mdi mdi-octagram"></i>
+                                        <i class="far fa-clock"></i>
                                         <span class="hide-menu"> Jam</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="{{ route('admin.days') }}" class="sidebar-link">
-                                        <i class="mdi mdi-playlist-check"></i>
+                                        <i class="far fa-calendar"></i>
                                         <span class="hide-menu"> Hari</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="{{ route('admin.timenotavailables') }}" class="sidebar-link">
-                                        <i class="mdi mdi-playlist-check"></i>
+                                        <i class="far fa-calendar-times"></i>
                                         <span class="hide-menu"> Waktu Berhalangan</span>
                                     </a>
                                 </li>
@@ -119,19 +112,19 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)
                                    " aria-expanded="false">
-                                <i class="ti-alarm-clock"></i>
+                                <i class="mdi mdi-creation"></i>
                                 <span class="hide-menu">Generate Jadwal</span>
                             </a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
                                     <a href="{{ route('admin.generates') }}" class="sidebar-link">
-                                        <i class="mdi mdi-octagram"></i>
+                                        <i class="ti-plus"></i>
                                         <span class="hide-menu"> Mulai Generate</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="{{ route('admin.generates.result', 1) }}" class="sidebar-link">
-                                        <i class="mdi mdi-octagram"></i>
+                                        <i class="icon-Receipt"></i>
                                         <span class="hide-menu"> Hasil Generate</span>
                                     </a>
                                 </li>

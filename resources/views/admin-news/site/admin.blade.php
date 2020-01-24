@@ -130,7 +130,7 @@
                   <div class="d-flex">
                       <div class="m-r-20 align-self-center">
                           <h1 class="text-white">
-                              <i class="ti-alarm-clock"></i>
+                              <i class="mdi mdi-creation"></i>
                           </h1>
                       </div>
                       <div>
@@ -222,7 +222,7 @@
         <div class="card bg-light-info no-card-border">
             <div class="card-body text-center">
                 <div class="profile-pic m-b-20 m-t-20">
-                    <img src="{{ URL('images/logo-andalus.png') }}" width="85" class="rounded-circle" alt="user">
+                    <img src="{{ URL('images/logo-andalus.png') }}" width="92" class="rounded-circle" alt="user">
                     <h4 class="m-t-20 m-b-0">{{ isset(Auth::user()->name) ? Auth::user()->name : '' }}</h4>
                     <a href="mailto:{{ isset(Auth::user()->email) ? Auth::user()->email : '' }}">{{ isset(Auth::user()->email) ? Auth::user()->email : '' }}</a>
                 </div>
@@ -231,11 +231,11 @@
                 <div class="row text-center">
                     <div class="col-6 border-right">
                         <a href="#" class="link d-flex align-items-center justify-content-center font-medium">
-                        <i class="mdi mdi-message font-20 m-r-5"></i>Bantuan</a>
+                        <i class="ti-help-alt font-20 m-r-5"></i>Bantuan</a>
                     </div>
                     <div class="col-6">
-                        <a href="#" class="link d-flex align-items-center justify-content-center font-medium">
-                        <i class="mdi mdi-developer-board font-20 m-r-5"></i>Website</a>
+                        <a href="#" class="link d-flex align-imdi mdi-developer-boardtems-center justify-content-center font-medium">
+                        <i class="ti-desktop font-20 m-r-5"></i>Website</a>
                     </div>
                 </div>
             </div>

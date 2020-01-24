@@ -58,9 +58,13 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown mega-dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-gift font-20"></i>
+                                <i class="ti-help-alt font-20"></i>
                             </a>
-                            <div class="dropdown-menu animated bounceInDown">
+                            <div class="dropdown-menu mailbox animated bounceInDown">
+                                <div class="drop-title bg-primary text-white mb-5 p-5">
+                                    <h4 class="m-b-0 m-t-5">Bantuan</h4>
+                                    <span class="font-light">Kami akan membantu anda menyelesaikan masalah sederhana</span>
+                                </div>
                                 <div class="mega-dropdown-menu row">
                                     <div class="col-lg-3 col-xlg-2 m-b-30">
                                         <h5 class="m-b-20">Carousel</h5>
@@ -371,25 +375,6 @@
                                 </a>
                             </form>
                         </li>
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="flag-icon flag-icon-us font-18"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right  animated bounceInDown" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-us"></i> English</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-fr"></i> French</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-es"></i> Spanish</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-de"></i> German</a>
-                            </div>
-                        </li>
 
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -414,21 +399,12 @@
                                 </div>
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}">
                                     <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
-                                </div>
-                            </div>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
