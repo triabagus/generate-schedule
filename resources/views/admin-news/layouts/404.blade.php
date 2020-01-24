@@ -7,6 +7,13 @@
     <meta name="msapplication-config" content="{{ URL::to('assets/img/favicon/browserconfig.xml') }}">
     <meta name="theme-color" content="#ffffff">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ URL::to('images/logo-andalus.png') }}">
+    <link rel="icon" type="image/png" href="{{ URL::to('images/logo-andalus.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ URL::to('images/logo-andalus.png') }}" sizes="16x16">
+    <link rel="mask-icon" href="{{ URL::to('images/logo-andalus.png') }}" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ URL::to('images/logo-andalus.png') }}">
+
     <title>Al- Andalus | Halaman Tidak Bisa Ditemukan</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('new_template/dist/css/style.min.css') }}">
