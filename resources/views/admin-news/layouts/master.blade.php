@@ -17,10 +17,6 @@
         <link rel="shortcut icon" href="{{ URL::to('images/logo-andalus.png') }}">
 
         <!-- Custom CSS -->
-        
-        <link href="{{ asset('new_template/assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('new_template/assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('new_template/assets/libs/morris.js/morris.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('new_template/dist/css/style.min.css') }}">
         @yield('style')
     </head>
@@ -77,18 +73,6 @@
     <script src="{{ asset('new_template/dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('new_template/dist/js/custom.min.js') }}"></script>
-    <!--This page JavaScript -->
-    <!--chartis chart-->
-    <script src="{{ asset('new_template/assets/libs/chartist/dist/chartist.min.js') }}"></script>
-    <script src="{{ asset('new_template/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
-    <!--c3 charts -->
-    <script src="{{ asset('new_template/assets/extra-libs/c3/d3.min.js') }}"></script>
-    <script src="{{ asset('new_template/assets/extra-libs/c3/c3.min.js') }}"></script>
-    <!--chartjs -->
-    <script src="{{ asset('new_template/assets/libs/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('new_template/assets/libs/morris.js/morris.min.js') }}"></script>
-
-    <script src="{{ asset('new_template/dist/js/pages/dashboards/dashboard1.js') }}"></script>
         @include('admin-news._partials.js')
         @yield('script')
     </body>

@@ -11,7 +11,7 @@ class TimeController extends Controller
     {
         $times = Time::orderBy('id', 'desc')->paginate(10);
 
-        return view('admin.time.index', compact('times'));
+        return view('admin-news.time.index', compact('times'));
     }
 
     public function create(Request $request)
