@@ -38,9 +38,9 @@
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url({{ asset('new_template/assets/images/background/login-register.jpg')}}) no-repeat center center;">
             <div class="auth-box on-sidebar">
                 <div id="loginform">
-                    <div class="logo">
+                    <div class="logo mb-4">
                         <span class="db"><img src="{{ URL('images/Login-Logo-Portal.png') }}" alt="logo" /></span>
-                        <h5 class="font-medium m-b-20 m-t-20">Sistem Penjadwalan</h5>
+                        <h5 class="font-medium m-b-20 m-t-20"></h5>
                     </div>
                     <!-- Form -->
                     <div class="row">
