@@ -22,8 +22,8 @@ class TimeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'time_begin'  => 'required',
-            'time_finish' => 'required'
+            'time_begin'  => 'required|unique:times,time_begin',
+            'time_finish' => 'required|unique:times,time_finish'
         ]);
 
         $begin  = $request->input('time_begin');
@@ -56,8 +56,8 @@ class TimeController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'time_begin'  => 'required',
-            'time_finish' => 'required'
+            'time_begin'  => 'required|unique:times,time_begin',
+            'time_finish' => 'required|unique:times,time_finish'
         ]);
 
         $times              = Time::find($id);

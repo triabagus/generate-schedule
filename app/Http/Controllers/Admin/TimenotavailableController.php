@@ -47,9 +47,9 @@ class TimenotavailableController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'lecturers' => 'required',
-            'days'      => 'required',
-            'times'     => 'required',
+            'lecturers' => 'required|unique:time_not_available,lecturers_id',
+            'days'      => 'required|unique:time_not_available,days_id',
+            'times'     => 'required|unique:time_not_available,times_id',
 
         ]);
 
@@ -82,9 +82,9 @@ class TimenotavailableController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'lecturers' => 'required',
-            'days'      => 'required',
-            'times'     => 'required',
+            'lecturers' => 'required|unique:time_not_available,lecturers_id',
+            'days'      => 'required|unique:time_not_available,days_id',
+            'times'     => 'required|unique:time_not_available,times_id',
         ]);
 
         $timenotavailables               = Timenotavailable::find($id);

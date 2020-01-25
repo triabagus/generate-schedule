@@ -50,7 +50,7 @@ class DayController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name_day'  => 'required',
+            'name_day'  => 'required|unique:days,name_day',
         ]);
 
         $days            = Day::find($id);
