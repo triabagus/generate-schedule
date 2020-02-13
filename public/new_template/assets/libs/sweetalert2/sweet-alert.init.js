@@ -7,7 +7,6 @@
     SweetAlert.prototype.init = function () {
 
             $(".sa-removeData").click(function (event) {
-                // var dataId = $(this).data('id');
                 event.preventDefault();
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
@@ -18,18 +17,18 @@
                 })
 
                 swalWithBootstrapButtons.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Apa anda yakin ?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
                     type: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, cancel!',
+                    confirmButtonText: 'Ya, hapus data ini!',
+                    cancelButtonText: 'Tidak, batalkan!',
                     reverseButtons: true
                 }).then((result) => {
                     if (result.value) {
                         swalWithBootstrapButtons.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
+                            'Terhapus',
+                            'Data anda telah terhapus secara permanen.',
                             'success'
                         )
                         $(this).closest("form.deleteedition").submit();
@@ -38,8 +37,8 @@
                         result.dismiss === Swal.DismissReason.cancel
                     ) {
                         swalWithBootstrapButtons.fire(
-                            'Cancelled',
-                            'Your imaginary file is safe :)',
+                            'Dibatalkan',
+                            'Selalu jaga data anda dengan aman.',
                             'error'
                         )
                     }

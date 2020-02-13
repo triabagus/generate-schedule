@@ -76,11 +76,7 @@
             </div>
             <div class="col-5 align-self-center">
                 <div class="d-flex no-block justify-content-end align-items-center">
-                    <a class="btn btn-sm btn-success" href="{{ route('admin.time.create') }}">
-                        <i class="ti-plus">
-                        </i>
-                        Search
-                    </a>
+                    
                 </div>
             </div>
         </div>
@@ -102,7 +98,7 @@
                     <td>{{ $time->time_begin }}</td>
                     <td>{{ $time->time_finish }}</td>
                     <td>{{ $time->range }}</td>
-                    <td style="width:25px;">
+                    <td>
                         <div class="button-group">
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.time.edit', $time->id) }}">
                                 <i class="ti-pencil">
