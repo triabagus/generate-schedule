@@ -18,6 +18,7 @@
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('new_template/dist/css/style.min.css') }}">
+        <link href="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
         @yield('style')
     </head>
     <body>
@@ -73,6 +74,9 @@
     <script src="{{ asset('new_template/dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('new_template/dist/js/custom.min.js') }}"></script>
+    <!-- Sweet Alert -->
+    <script src="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.all.min.js') }}" aria-hidden="true"></script>
+    <script src="{{ asset('new_template/assets/libs/sweetalert2/sweet-alert.init.js') }}" aria-hidden="true"></script>
         @include('admin-news._partials.js')
         @yield('script')
     </body>

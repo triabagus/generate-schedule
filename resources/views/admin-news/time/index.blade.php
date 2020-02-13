@@ -54,7 +54,7 @@
     <div class="card">
         <div class="card-body">
 
-        <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+        <table class="no-wrap table-bordered table-hover table" data-tablesaw>
             <thead class="bg-info text-white">
                 <tr>
                     <th scope="col">No</th>
@@ -64,14 +64,22 @@
                     <th scope="col">Option</th>
                 </tr>
             </thead>
-            <tbody id="checkall-target">
+            <tbody>
             @foreach($times as $key => $time)
                 <tr>
                     <td>{{ ($times->currentpage()-1) * $times->perpage() + $key + 1 }}</td>
                     <td>{{ $time->time_begin }}</td>
                     <td>{{ $time->time_finish }}</td>
                     <td>{{ $time->range }}</td>
-                    <td>Edit | Hapus</td>
+                    <td>
+                        <div class="button-group">
+                            <a class="btn btn-primary" href="{{ route('admin.time.edit', $time->id) }}">
+                                <i class="ti-pencil">
+                                </i>
+                                Ubah
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             @endforeach    
             </tbody>
