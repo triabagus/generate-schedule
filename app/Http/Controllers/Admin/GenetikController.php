@@ -11,6 +11,7 @@ use App\Models\Setting;
 use App\Models\Teach;
 use Excel;
 use Illuminate\Http\Request;
+// use Symfony\Component\HttpFoundation\Session\Session;
 
 class GenetikController extends Controller
 {
@@ -53,6 +54,8 @@ class GenetikController extends Controller
         $mutasi->save();
 
         return redirect()->route('admin.generates.result', 1);
+        
+
     }
 
     public function result($id)
@@ -170,7 +173,7 @@ class GenetikController extends Controller
 
     public function showTeacherSearch(int $id, Request $request)
     {
-        $teachName        = $request->teachName;
+        $teachName      = $request->teachName;
         $crossover      = Setting::where('key', Setting::CROSSOVER)->first();
         $mutasi         = Setting::where('key', Setting::MUTASI)->first();
         $lecturer       = Lecturer::select('id', 'name')->get();
@@ -221,6 +224,7 @@ class GenetikController extends Controller
         $rooms          = Room::select('id', 'name')->get();
         $days           = Day::select('name_day')->get();
         $times          = Time::select('range')->get();
+        $teachs         = Teach::select('id')->get();
         
         $schedule      = Schedule::orderBy('days_id', 'desc')
             ->orderBy('times_id', 'desc')

@@ -17,6 +17,7 @@
         <link rel="mask-icon" href="{{ URL::to('assets/img/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
         <link rel="shortcut icon" href="{{ URL::to('assets/img/favicon/favicon.ico') }}">
 
+        <link rel="stylesheet" href="{{ asset('css/alert.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/bootstrap/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('admin/dist/css/skins/_all-skins.min.css') }}"/>
@@ -53,6 +54,9 @@
             </div>
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{{ asset('js/loading.js')}}"></script>
         <script src="{{ asset('admin/bootstrap/js/bootstrap.js') }}"></script>
         <script src="{{ asset('admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
         <script src="{{ asset('admin/bootstrap/js/bootstrap.min.js') }}"></script>

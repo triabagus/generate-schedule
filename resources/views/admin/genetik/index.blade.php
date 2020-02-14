@@ -11,6 +11,7 @@
        height:auto;
        overflow-x:auto;
     }
+    
 </style>
 @stop
 
@@ -37,6 +38,7 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
+                            <span id="message"></span>
                         {!! Form::open(['role' => 'form', 'route' => 'admin.generates.submit', 'id' => 'form-register', 'method' => 'get']) !!}
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -76,11 +78,26 @@
                                 </div>
                             </div>
                             <div class="col-md-12" style="padding-bottom: 15px;">
-                                {!! Form::submit('Generate',['class'=>'btn btn-default btn-block']) !!}
+                                {!! Form::submit('Generate',['class' => 'btn btn-default btn-block', 'onclick'=>'submit()']) !!}
                             </div>
+
+                            <div id="targetLayer">
+                                <div id="loader" style="display: none; margin-top: 5px; text-align: center;">
+                                    <div class="progress">
+                                        <div id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <img src="{{ asset('images/loadi.gif') }}" width="100" height="100" alt="">
+                                </div>
+
+                                <div id="result"></div>
+                            </div>
+                            
                             <div class="col-md-12">
                                 {!! Form::close() !!}
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -88,4 +105,5 @@
         </div>
     </section>
 </div>
+                                                                                            
 @stop

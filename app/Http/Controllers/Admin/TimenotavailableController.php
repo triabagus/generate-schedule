@@ -14,6 +14,7 @@ class TimenotavailableController extends Controller
     {
         $searchlecturers   = $request->input('searchlecturers');
         $searchday         = $request->input('searchday');
+        
         $timenotavailables = Timenotavailable::whereHas('lecturer', function ($query) use ($searchlecturers)
         {
 
