@@ -3,7 +3,7 @@
     <label>
         Nama Kelas
     </label>
-    {!! Form::text('namerooms', isset($rooms->name) ? $rooms->name : '', ['class' => 'form-control', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Nama Kelas', 'id' => 'namerooms']) !!}
+    {!! Form::select('rooms', $rooms, null, ['class' => 'form-control select2 to-select', 'id' => 'rooms', 'required', 'placeholder' => 'Pilih Kelas']) !!}
 </div>
 <div class="form-group">
     <label>

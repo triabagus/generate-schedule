@@ -20,6 +20,6 @@
     {!! Form::select('times', $times, isset($timenotavailables->times_id) ? $timenotavailables->times_id :'' , ['class' => 'form-control select2 to-select', 'id' => 'times', 'required','placeholder' => 'Pilih Waktu']) !!}
     <label id="times-error" class="error" for="times" style="display: none;">This field is required.</label>
 </div>
-<button class="btn btn-primary">
+<button type="submit" class="btn btn-primary">
     Simpan
 </button>

@@ -22,12 +22,13 @@ class RoomsController extends Controller
 
     public function create(Request $request)
     {
+        $rooms  = Room::orderBy('name', 'desc')->pluck('name', 'id');
 
         $type = array(
             'Putra'         => 'Putra',
             'Putri'         => 'Putri');
 
-        return view('admin.room.create', compact('type'));
+        return view('admin.room.create', compact('type', 'rooms'));
     }
 
     public function store(Request $request)

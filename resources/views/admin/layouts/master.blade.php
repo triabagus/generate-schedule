@@ -54,8 +54,8 @@
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
         <script src="{{ asset('js/loading.js')}}"></script>
         <script src="{{ asset('admin/bootstrap/js/bootstrap.js') }}"></script>
         <script src="{{ asset('admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
