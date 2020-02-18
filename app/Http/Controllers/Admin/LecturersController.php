@@ -33,7 +33,7 @@ class LecturersController extends Controller
     {
         $this->validate($request, [
             'nidnlecturer'   => 'required',
-            'name'           => 'required',
+            'name'           => 'required|unique:lecturers,name',
 
         ]);
 
@@ -63,7 +63,7 @@ class LecturersController extends Controller
     {
         $this->validate($request, [
             'nidnlecturer'   => 'required',
-            'name'           => 'required',
+            'name'           => 'required|unique:lecturers,name',
 
         ]);
 

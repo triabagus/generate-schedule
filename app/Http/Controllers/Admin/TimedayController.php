@@ -28,8 +28,8 @@ class TimedayController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'days'          => 'required',
-            'times'         => 'required',
+            'days'          => 'required|unique:timedays,days_id,NULL,NULL,times_id,'.$request['times'],
+            'times'         => 'required|unique:timedays,times_id,NULL,NULL,days_id,'.$request['days'],
         ]);
 
         $params = [
@@ -59,8 +59,8 @@ class TimedayController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'days'          => 'required',
-            'times'         => 'required',
+            'days'          => 'required|unique:timedays,days_id,NULL,NULL,times_id,'.$request['times'],
+            'times'         => 'required|unique:timedays,times_id,NULL,NULL,days_id,'.$request['days'],
         ]);
 
         $timedays                = Timeday::find($id);

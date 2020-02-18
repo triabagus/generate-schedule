@@ -33,7 +33,7 @@ class RoomsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'namerooms'  => 'required'
+            'namerooms'  => 'required|unique:romms,name'
         ]);
 
         $params = [
@@ -66,7 +66,7 @@ class RoomsController extends Controller
     {
 
         $this->validate($request, [
-            'namerooms'  => 'required'
+            'namerooms'  => 'required|unique:romms,name'
         ]);
 
         $rooms             = Room::find($id);
