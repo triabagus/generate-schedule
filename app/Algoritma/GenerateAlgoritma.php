@@ -13,10 +13,14 @@ class GenerateAlgoritma
 {
     public function randomingProcess($i)
     {
-        $teach  = Teach::inRandomOrder()->first();
-        $day    = Day::inRandomOrder()->first();
-        $time   = Time::inRandomOrder()->first();
-        $type   = $i + 1;
+        $teach      = Teach::inRandomOrder()->first();
+        $day        = Day::inRandomOrder()->first();
+        $time       = Time::inRandomOrder()->first();
+
+        $id_room    = $teach->class_room;
+        $room       = Room::find($id_room);
+
+        $type       = $i + 1;
 
         $params = [
             'teachs_id' => $teach->id,
@@ -53,37 +57,24 @@ class GenerateAlgoritma
             ->where('times_id', '=', $time->id)
             ->first();
 
-        // filter agar guru tidak mengajar pada type kelas putri dengan selisih 3 jam setelahnya
+        // filter agar guru tidak mengajar pada type kelas berbeda dihari yang sama dengan selisih 2 jam setelah atau sebelum waktu
+
         $reservation_time_start = $time->time_begin;
         $reservation_time_end   = $time->time_finish;
 
-        $start_time = Carbon::parse($reservation_time_start)->subMinutes(120); // 2 jam
-        $end_time   = Carbon::parse($reservation_time_end)->addMinutes(120);   // 2 jam
-        
+        $start_time = Carbon::parse($reservation_time_start)->subHours(2)->toTimeString(); // -2 jam
+        $end_time   = Carbon::parse($reservation_time_end)->addHours(2)->toTimeString();   // +2 jam
+
         $check_time_difference = Schedule::join('teachs', 'teachs.id', '=', 'schedules.teachs_id')
             ->join('lecturers', 'lecturers.id', '=', 'teachs.lecturers_id')
-            ->join('rooms', 'rooms.id', '=', 'schedules.rooms_id')
             ->join('times', 'times.id', '=', 'schedules.times_id')
+            ->join('rooms', 'rooms.id', '=', 'teachs.class_room')
             ->where('lecturers_id', '=', $teach->lecturers_id) // cek guru yang sama
             ->where('days_id', '=', $day->id) // cek hari yang sama
-            ->where('rooms.type', '!=', $teach->class_room['type']) // cek type kelas berbeda
-            ->where(function($query)
-                use($start_time, $end_time){
-                    $query->where('times.time_begin', '>', $start_time);
-                    $query->where('times.time_begin', '<', $end_time);
-                })
-            ->orwhere(function($query)
-                use($start_time, $end_time){
-                    $query->where('times.time_finish', '>', $start_time);
-                    $query->where('times.time_finish', '<', $end_time);
-                })
+            ->where('rooms.type', '!=', $room->type) // cek type kelas berbeda 
+            ->where('schedules.type', '=', $type) // cek type kelas berbeda 
+            ->whereRaw('((times.time_begin >= ? AND times.time_begin <= ?) OR (times.time_finish <= ? AND times.time_finish >= ?))',[$start_time, $end_time, $end_time, $start_time]) // cek selisih 2 jam sesudah atau sebelum jam yang telah ditentukan (DEFAULT)
             ->first();
-
-        // dd($start_time);
-        // $to = \Carbon\Carbon::createFromFormat('H:s', '3:00');
-        // $from = \Carbon\Carbon::createFromFormat('H:s', '6:00');
-        // $cek_carbon = $to->diffInHours($from);
-        // SELECT * FROM `schedules` INNER JOIN `teachs` ON teachs.id=schedules.teachs_id  INNER JOIN `lecturers` ON lecturers.id = teachs.lecturers_id INNER JOIN `times` ON schedules.times_id = times.id INNER JOIN `rooms` ON schedules.rooms_id = rooms.id WHERE `days_id` = 1 AND `lecturers_id` = 36 AND schedules.type AND rooms.type = 'putri'
 
         if($check_teach_id)
         {
@@ -95,6 +86,9 @@ class GenerateAlgoritma
         {
             return $this->randomingProcess($i);
         } else if($check_class_id)
+        {
+            return $this->randomingProcess($i);
+        } else if($check_time_difference)
         {
             return $this->randomingProcess($i);
         } else 

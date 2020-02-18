@@ -202,7 +202,7 @@ class GenetikController extends Controller
                 if($s->time->range == $t->range && $s->teach->lecturer->name == $teachName){
                     // $schedules[] = $t->range;
 
-                    $schedules["{$t->range}"][$s->day->name_day][] = $s->teach->course->name  .' - '. $s->teach->lecturer->name .' - '.$s->teach->room->name; // pelajaran guru kelas
+                    $schedules["{$t->range}"][$s->day->name_day][] = $s->teach->course->name  .' - '. $s->teach->lecturer->name .' - '.$s->teach->room->name.' - '.$s->teach->room->type; // pelajaran guru kelas
                     
                 }
             }
