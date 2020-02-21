@@ -21,7 +21,7 @@
         <link href="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
         <!-- This Page CSS -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('new_template/assets/libs/select2/dist/css/select2.min.css') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ asset('new_template/assets/libs/select2/dist/css/select2.min.css') }}"> -->
         @yield('style')
     </head>
     <body>
@@ -80,10 +80,13 @@
     <!-- Sweet Alert -->
     <script src="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.all.min.js') }}" aria-hidden="true"></script>
     <script src="{{ asset('new_template/assets/libs/sweetalert2/sweet-alert.init.js') }}" aria-hidden="true"></script>
+<<<<<<< HEAD
     <!-- This Page JS -->
     <script src="{{ asset('new_template/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('new_template/assets/libs/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('new_template/dist/js/pages/forms/select2/select2.init.js') }}"></script>
+=======
+>>>>>>> 231a4f502039d79013f95b1a37c305dca1f48d03
         @include('admin-news._partials.js')
         @yield('script')
     </body>
