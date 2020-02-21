@@ -1,4 +1,4 @@
- /* COMMENT */
+/* COMMENT */
 <aside class="main-sidebar">
     <section class="sidebar">
         <div class="user-panel">
@@ -124,7 +124,7 @@
                         </span>
                     </a>
                 </li>
-            </ul>
+              </ul>
             </li>
             <li>
                 <a href="{{ route('admin.user') }}">

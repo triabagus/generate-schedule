@@ -23,12 +23,12 @@ class UserController extends Controller
 
         $users = $users->paginate(10);
 
-        return view('admin.user.index', compact('users'));
+        return view('admin-news.user.index', compact('users'));
     }
 
     public function create(Request $request)
     {
-        return view('admin.user.create');
+        return view('admin-news.user.create');
     }
 
     public function store(Request $request)
@@ -56,10 +56,10 @@ class UserController extends Controller
 
         if ($users == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.user.edit', compact('users'));
+        return view('admin-news.user.edit', compact('users'));
     }
 
     public function update(Request $request, $id)

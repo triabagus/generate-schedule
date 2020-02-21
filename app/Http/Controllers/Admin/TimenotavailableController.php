@@ -32,7 +32,7 @@ class TimenotavailableController extends Controller
 
         $timenotavailables = $timenotavailables->orderBy('id', 'desc')->paginate(10);
 
-        return view('admin.timenotavailable.index', compact('timenotavailables'));
+        return view('admin-news.timenotavailable.index', compact('timenotavailables'));
     }
 
     public function create(Request $request)
@@ -42,7 +42,7 @@ class TimenotavailableController extends Controller
         $days      = Day::orderBy('name_day', 'asc')->pluck('name_day', 'id');
         $times     = Time::orderBy('range', 'asc')->pluck('range', 'id');
 
-        return view('admin.timenotavailable.create', compact('lecturers', 'days', 'times'));
+        return view('admin-news.timenotavailable.create', compact('lecturers', 'days', 'times'));
     }
 
     public function store(Request $request)
@@ -74,10 +74,10 @@ class TimenotavailableController extends Controller
 
         if ($timenotavailables == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.timenotavailable.edit', compact('timenotavailables', 'lecturers', 'days', 'times'));
+        return view('admin-news.timenotavailable.edit', compact('timenotavailables', 'lecturers', 'days', 'times'));
     }
 
     public function update(Request $request, $id)

@@ -26,6 +26,14 @@ class SiteController extends Controller
         $schedules   = Schedule::count();
         $managements = Timeday::count();
 
-        return view('admin.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules', 'managements'));
+        // return view('admin.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules', 'managements'));
+
+        return view('admin-news.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules'));
+
+    }
+
+    public function doc()
+    {
+        return view('doc.index');
     }
 }

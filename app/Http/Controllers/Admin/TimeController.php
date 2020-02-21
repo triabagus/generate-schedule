@@ -11,12 +11,12 @@ class TimeController extends Controller
     {
         $times = Time::orderBy('id', 'desc')->paginate(10);
 
-        return view('admin.time.index', compact('times'));
+        return view('admin-news.time.index', compact('times'));
     }
 
     public function create(Request $request)
     {
-        return view('admin.time.create');
+        return view('admin-news.time.create');
     }
 
     public function store(Request $request)
@@ -47,10 +47,10 @@ class TimeController extends Controller
 
         if ($times == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.time.edit', compact('times'));
+        return view('admin-news.time.edit', compact('times'));
     }
 
     public function update(Request $request, $id)

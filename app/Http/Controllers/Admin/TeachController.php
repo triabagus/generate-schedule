@@ -49,7 +49,7 @@ class TeachController extends Controller
         $teachs = $teachs->orderBy('id', 'desc')->paginate(10);
 
         // dd($teachs);
-        return view('admin.teach.index', compact('teachs'));
+        return view('admin-news.teach.index', compact('teachs'));
     }
 
     public function create(Request $request)
@@ -58,7 +58,7 @@ class TeachController extends Controller
         $courses   = Course::orderBy('name', 'asc')->pluck('name', 'id');
         $room      = Room::orderBy('name', 'asc')->pluck('name', 'id');
 
-        return view('admin.teach.create', compact('lecturers', 'courses','room'));
+        return view('admin-news.teach.create', compact('lecturers', 'courses','room'));
     }
 
     public function store(Request $request)
@@ -89,10 +89,10 @@ class TeachController extends Controller
 
         if ($teachs == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.teach.edit', compact('teachs', 'lecturers', 'courses','room'));
+        return view('admin-news.teach.edit', compact('teachs', 'lecturers', 'courses','room'));
     }
 
     public function update(Request $request, $id)

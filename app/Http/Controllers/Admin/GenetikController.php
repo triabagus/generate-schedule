@@ -20,7 +20,7 @@ class GenetikController extends Controller
         // $years = Teach::select('year')->groupBy('year')->pluck('year', 'year');
 
         // return view('admin.genetik.index', compact('years'));
-        return view('admin.genetik.index');
+        return view('admin-news.genetik.index');
     }
 
     public function submit(Request $request)
@@ -87,7 +87,7 @@ class GenetikController extends Controller
 
         // dd($schedules); //cek crossover & mutasi
         // return view('admin.genetik.result', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi'));
-        return view('admin.genetik.result', compact('schedules',  'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi'));
+        return view('admin-news.genetik.result', compact('schedules',  'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi'));
     }
 
     public function excel($id)

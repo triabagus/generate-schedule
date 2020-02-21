@@ -11,23 +11,25 @@ class DayController extends Controller
     {
         $days = Day::orderBy('id', 'desc')->paginate(10);
 
-        return view('admin.day.index', compact('days'));
+        return view('admin-news.day.index', compact('days'));
     }
 
     public function create(Request $request)
     {
-        return view('admin.day.create');
+        $days  = Day::orderBy('name_day', 'desc')->pluck('name_day', 'id');
+
+        return view('admin-news.day.create', compact('days'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name_day'  => 'unique:days,name_day|required',
+            // 'name_day'  => 'unique:days,name_day|required',
 
         ]);
 
         $params = [
-            'name_day'  => $request->input('name_day'),
+            'name_day'  => $request->input('name_day', 'id'),
         ];
 
         $days = Day::create($params);
@@ -41,10 +43,10 @@ class DayController extends Controller
 
         if ($days == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.day.edit', compact('days'));
+        return view('admin-news.day.edit', compact('days'));
     }
 
     public function update(Request $request, $id)
