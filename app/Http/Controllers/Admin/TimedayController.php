@@ -40,7 +40,7 @@ class TimedayController extends Controller
 
         $timedays = Timeday::create($params);
 
-        return redirect()->route('admin-news.timedays');
+        return redirect()->route('admin.timedays');
     }
 
     public function edit($id)
