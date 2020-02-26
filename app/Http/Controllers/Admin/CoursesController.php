@@ -19,7 +19,7 @@ class CoursesController extends Controller
 
         $courses = $courses->paginate(10);
 
-        return view('admin.courses.index', compact('courses'));
+        return view('admin-news.courses.index', compact('courses'));
     }
 
     public function create(Request $request)
@@ -49,10 +49,10 @@ class CoursesController extends Controller
 
         if ($courses == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.courses.edit', compact('courses'));
+        return view('admin-news.courses.edit', compact('courses'));
     }
 
     public function update(Request $request, $id)

@@ -16,29 +16,26 @@ class LecturersController extends Controller
             $lecturers = $lecturers->where('name', 'LIKE', '%' . $request->searchname . '%');
         }
 
-        if (!empty($request->searchnidn))
-        {
-            $lecturers = $lecturers->where('nidn', 'LIKE', '%' . $request->searchnidn . '%');
-        }
+        
 
         $lecturers = $lecturers->paginate(10);
 
-        return view('admin.lecturer.index', compact('lecturers'));
+        return view('admin-news.lecturer.index', compact('lecturers'));
     }
     public function create(Request $request)
     {
-        return view('admin.lecturer.create');
+        return view('admin-news.lecturer.create');
     }
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nidnlecturer'   => 'required',
+            // 'nidnlecturer'   => 'required',
             'name'           => 'required',
 
         ]);
 
         $params = [
-            'nidn'           => $request->input('nidnlecturer'),
+            // 'nidn'           => $request->input('nidnlecturer'),
             'name'           => $request->input('name'),
         ];
 
@@ -53,22 +50,21 @@ class LecturersController extends Controller
 
         if ($lecturers == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.lecturer.edit', compact('lecturers'));
+        return view('admin-news.lecturer.edit', compact('lecturers'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nidnlecturer'   => 'required',
             'name'           => 'required',
 
         ]);
 
         $lecturers                 = Lecturer::find($id);
-        $lecturers->nidn           = $request->input('nidnlecturer');
+        // $lecturers->nidn           = $request->input('nidnlecturer');
         $lecturers->name           = $request->input('name');
         $lecturers->save();
 

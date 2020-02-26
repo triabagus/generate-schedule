@@ -61,9 +61,9 @@
                                             <th style="text-align:center;">
                                                 No.
                                             </th>
-                                            <th style="text-align:center;">
+                                            {{-- <th style="text-align:center;">
                                                 NIDN
-                                            </th>
+                                            </th> --}}
                                             <th style="text-align:center;">
                                                 Nama Guru
                                             </th>

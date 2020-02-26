@@ -154,5 +154,4 @@
     $.validator.addMethod("EmailFormat", function(value, element) {
         return this.optional( element ) || ( /^[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,4}$/.test( value ) && /^(?=.{1,64}@.{4,64}$)(?=.{6,100}$).*/.test( value ) );
     }, 'Please enter valid email address.');
-
 </script>

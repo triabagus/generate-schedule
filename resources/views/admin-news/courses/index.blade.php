@@ -1,117 +1,102 @@
-@extends('admin.layouts.master')
+@extends('admin-news.layouts.master')
 
 @section('title')
 {{ $title= 'Mata Pelajaran' }}
 @stop
 
-@section('style')
-<style type="text/css">
-.panel-body{
-       width:auto;
-       height:auto;
-       overflow-x:auto;
-    }
-</style>
-@stop
 
-@section('content')
-<div class="content-wrapper">
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">
-                            {{ $title }}
-                        </h3>
-                        <div class="box-tools pull-right">
-                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
-                                <i class="fa fa-minus">
-                                </i>
-                            </button>
-                            <button class="btn btn-box-tool" data-widget="remove" type="button">
-                                <i class="fa fa-times">
-                                </i>
-                            </button>
-                        </div>
+
+@section('content')    
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-5 align-self-center">
+                    <h4 class="page-title">{{ $title }}</h4>
+                    <div class="d-flex align-items-center">
                     </div>
-                    <div class="box-body">
-                        <div class="row">
-                        {!! Form::open(['role' => 'form', 'route' => 'admin.courses', 'method' =>'get']) !!}
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Mata Pelajaran']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                {!! Form::submit('Search',['class'=>'btn btn-default btn-block']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                            {!! Form::close() !!}
-                            <div class="panel-body table-responsive">
-                            @include('admin._partials.notifications')
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr class="info">
-                                            <th style="text-align:center;">
-                                                No.
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Nama Mata Pelajaran
-                                            </th>
-                                            <th colspan="2" style="text-align:center;">
-                                                <a class="btn btn-primary" href="{{ route('admin.courses.create') }}">
-                                                    <i class="fa fa-plus">
-                                                    </i>
-                                                    Tambah Data
-                                                </a>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($courses as $key => $course)
-                                        <tr>
-                                            <td align="center">
-                                                {{ ($courses->currentpage()-1) * $courses->perpage() + $key + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ $course->name }}
-                                            </td>
-                                            
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <a class="btn btn-warning btn-sm" href="{{ route('admin.courses.edit', $course->id) }}">
-                                                        <span class="glyphicon glyphicon-edit">
-                                                        </span>
-                                                        Ubah
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    {!! Form::model($course, ['route' => ['admin.courses.delete', $course->id], 'onclick' => 'return confirm("Anda Yakin?");']) !!}
-                                                    {!! Form::hidden('_method', 'DELETE') !!}
-                                                    {!! Form::button('
-                                                    <span class="glyphicon glyphicon-trash">
-                                                    </span>
-                                                    Hapus', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
-                                                {!! Form::close() !!}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {!! $courses->appends(Input::all())->render() !!}
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-7 align-self-center">
+                    <div class="d-flex no-block justify-content-end align-items-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                
+                               
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Active user - project- visitors -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            @include('admin._partials.notifications')
+                            
+                            <div class="dt-buttons">
+                                
+                                <button class="btn waves-effect waves-light btn-info mr-1" tabindex="0" aria-controls="file_export" href="{{ route('admin.lecturer.create') }}"><span>Tambah Data</span></button>
+                            </div>
+                            <div id="file_export_filter" class="dataTables_filter mr-3">
+                                <label>Search Mata Pelajaran:
+                                    {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Mata Pelajaran']) !!}
+                                </label>
+                                    <button type="button" class="btn waves-effect waves-light btn-success ml-3">
+                                    <span>Search</span>
+                                    </button>
+                            </div>
+
+                            <div class="tablesaw-bar tablesaw-mode-stack"></div>
+                            
+                            <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="border text-center">No.</th>
+                                        <th scope="col" class="border text-center">Nama Mata Pelajaran</th>
+                                        <th scope="col" class="border text-center">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="checkall-target">
+                                    @foreach($courses as $key => $course)
+                                    <tr>
+                                        <td class="text-center">{{ ($courses->currentpage()-1) * $courses->perpage() + $key + 1 }}
+                                        </td>
+                                        <td>
+                                            {{ $course->name }}
+                                        </td>
+                                        <td class="d-flex justify-content-around">
+
+                                            <a type="button" scope="col-1" class="btn waves-effect waves-light btn-warning" href="{{ route('admin.courses.edit', $course->id) }}">Ubah</a>
+                                            
+                                            {!! Form::model($course, ['route' => ['admin.courses.delete', $course->id], 'onclick' => 'return confirm("Anda Yakin?");']) !!}
+                                                    {!! Form::hidden('_method', 'DELETE') !!}
+                                                    {!! Form::button('
+                                                    <span class="glyphicon glyphicon-trash">
+                                                    </span>
+                                                    Hapus', ['type' => 'submit', 'class' => 'btn waves-effect waves-light btn-danger']) !!}
+                                                {!! Form::close() !!}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            {!! $courses->appends(Input::all())->render() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Recent comment and chats -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Recent comment and chats -->
+            <!-- ============================================================== -->
+        </div>
 @stop

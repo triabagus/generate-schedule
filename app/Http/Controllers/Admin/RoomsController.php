@@ -17,7 +17,7 @@ class RoomsController extends Controller
 
         $rooms = $rooms->paginate(10);
 
-        return view('admin.room.index', compact('rooms'));
+        return view('admin-news.room.index', compact('rooms'));
     }
 
     public function create(Request $request)
@@ -27,7 +27,7 @@ class RoomsController extends Controller
             'Putra'         => 'Putra',
             'Putri'         => 'Putri');
 
-        return view('admin.room.create', compact('type'));
+        return view('admin-news.room.create', compact('type'));
     }
 
     public function store(Request $request)

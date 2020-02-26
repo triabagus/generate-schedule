@@ -8,7 +8,7 @@
 <style type="text/css">
 .panel-body{
         width:auto;
-        height:auto;
+        height:auto;z
         overflow-x:auto;
     }
 </style>
@@ -121,3 +121,7 @@
     </section>
 </div>
 @stop
+
+@section('buhuihui')
+    lorem1000
+@endsection
