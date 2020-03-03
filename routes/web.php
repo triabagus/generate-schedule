@@ -20,6 +20,7 @@ Route::group(['namespace' => 'Admin'], function ()
     Route::group(['middleware' => ['auth.admin'], 'prefix' => 'admin'], function ()
     {
         Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'SiteController@index']);
+        Route::get('doc', ['as' => 'admin.doc', 'uses' => 'SiteController@doc']);
 
         // AJAX
         Route::get('ajax/user/email', ['as' => 'ajax.user.email', 'uses' => 'AjaxController@EmailUser']);

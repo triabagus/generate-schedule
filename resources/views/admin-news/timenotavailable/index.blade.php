@@ -1,131 +1,132 @@
-@extends('admin.layouts.master')
+@extends('admin-news.layouts.master')
 
 @section('title')
 {{ $title= 'Waktu Berhalangan' }}
 @stop
 
 @section('style')
-<style type="text/css">
-.panel-body{
-       width:auto;
-       height:auto;
-       overflow-x:auto;
+<link href="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw.css') }}" rel="stylesheet">
+<link href="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+
+<style>
+    form.deleteedition{
+        display:inline-block;
     }
 </style>
 @stop
 
+@section('script')
+
+<script src="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw.jquery.js') }}"></script>
+<script src="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw-init.js') }}"></script>
+<script src="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.all.min.js') }}" aria-hidden="true"></script>
+<script src="{{ asset('new_template/assets/libs/sweetalert2/sweet-alert.init.js') }}" aria-hidden="true"></script>
+@stop
+
 @section('content')
-<div class="content-wrapper">
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">
-                            {{ $title }}
-                        </h3>
-                        <div class="box-tools pull-right">
-                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
-                                <i class="fa fa-minus">
-                                </i>
-                            </button>
-                            <button class="btn btn-box-tool" data-widget="remove" type="button">
-                                <i class="fa fa-times">
-                                </i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="row">
-                            {!! Form::open(['role' => 'form', 'route' => 'admin.timenotavailables', 'method' =>'get']) !!}
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {!! Form::text('searchlecturers', Input::get('searchlecturers')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Nama Guru']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {!! Form::text('searchday', Input::get('searchday')?: null, ['class' => 'form-control', 'placeholder' => 'Mencari Berdasarkan Hari']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="padding-bottom: 15px;">
-                                {!! Form::submit('Search',['class'=>'btn btn-default btn-block']) !!}
-                            </div>
-                            <div class="col-md-12">
-                            {!! Form::close() !!}
-                            <div class="panel-body table-responsive">
-                            @include('admin._partials.notifications')
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr class="info">
-                                            <th style="text-align:center;">
-                                                No.
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Guru
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Hari
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Waktu
-                                            </th>
-                                           <th colspan="2" style="text-align:center;">
-                                                <a class="btn btn-primary" href="{{ route('admin.timenotavailable.create') }}">
-                                                    <i class="fa fa-plus">
-                                                    </i>
-                                                    Tambah Data
-                                                </a>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                     @foreach($timenotavailables as $key => $timenotavailable)
-                                        <tr>
-                                            <td align="center">
-                                                {{ ($timenotavailables->currentpage()-1) * $timenotavailables->perpage() + $key + 1 }}
-                                            </td>
-                                            <td>
-                                                {{ isset($timenotavailable->lecturer->name) ? $timenotavailable->lecturer->name : '' }}
-                                            </td>
-                                            <td>
-                                                {{ isset($timenotavailable->day->name_day) ? $timenotavailable->day->name_day : '' }}
-                                            </td>
-                                            <td>
-                                                {{ isset($timenotavailable->time->range) ? $timenotavailable->time->range : '' }}
-                                            </td>
-                                           <td class="text-center">
-                                                <div class="btn-group">
-                                                    <a class="btn btn-warning btn-sm" href="{{ route('admin.timenotavailable.edit', $timenotavailable->id) }}">
-                                                        <span class="glyphicon glyphicon-edit">
-                                                        </span>
-                                                        Ubah
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    {!! Form::model($timenotavailable, ['route' => ['admin.timenotavailable.delete', $timenotavailable->id], 'onclick' => 'return confirm("Anda Yakin?");']) !!}
-                                                    {!! Form::hidden('_method', 'DELETE') !!}
-                                                    {!! Form::button('
-                                                    <span class="glyphicon glyphicon-trash">
-                                                    </span>
-                                                    Hapus', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
-                                                {!! Form::close() !!}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {!! $timenotavailables->appends(Input::all())->render() !!}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title">{{ $title }}</h4>
+            <div class="d-flex align-items-center">
+
+            </div>
+        </div>
+
+        <div class="col-7 align-self-center">
+            <div class="d-flex no-block justify-content-end align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+
+    @include('admin-news._partials.notifications')
+    <div class="card">
+        <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-7 align-self-center">
+                <h6 class="card-subtitle">
+                    Description Timenotavailables Blade.
+                </h6>
+                <a class="btn btn-sm btn-success" href="{{ route('admin.timenotavailable.create') }}">
+                    <i class="ti-plus">
+                    </i>
+                    Tambah
+                </a>
+            </div>
+            <div class="col-5 align-self-center">
+                <div class="d-flex no-block justify-content-end align-items-center">
+                    
                 </div>
             </div>
         </div>
-    </section>
+
+        <table class="no-wrap table-bordered table-hover table" data-tablesaw>
+            <thead class="bg-info text-white">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Guru</th>
+                    <th scope="col">Hari</th>
+                    <th scope="col">Waktu</th>
+                    <th scope="col">Option</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($timenotavailables as $key => $timenotavailable)
+                <tr>
+                    <td>{{ ($timenotavailables->currentpage()-1) * $timenotavailables->perpage() + $key + 1 }}</td>
+                    <td>{{ $timenotavailable->lecturer->name }}</td>
+                    <td>{{ $timenotavailable->day->name_day}}</td>
+                    <td>{{ $timenotavailable->time->range }}</td>
+                    <td>
+                        <div class="button-group">
+                            <a class="btn btn-sm btn-primary" href="{{ route('admin.timenotavailable.edit', $timenotavailable->id) }}">
+                                <i class="ti-pencil">
+                                </i>
+                                Ubah
+                            </a>
+
+                            {!! Form::model($timenotavailable, ['route' => ['admin.timenotavailable.delete', $timenotavailable->id], 'id'=> 'delete-'.$timenotavailable->id, 'class'=> 'deleteedition']) !!}
+                            {!! Form::hidden('_method', 'DELETE') !!}
+                            {!! Form::button('
+                            <i class="ti-trash"></i>
+                            Hapus', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm sa-removeData', 'data-file'=> 'delete-'.$timenotavailable->id]) !!}
+                            {!! Form::close() !!}
+
+                        </div>
+                    </td>
+                </tr>
+            @endforeach    
+            </tbody>
+        </table>
+            
+        {!! $timenotavailables->appends(Input::all())->render() !!}
+        
+        </div>
+    </div>
+
 </div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
 @stop

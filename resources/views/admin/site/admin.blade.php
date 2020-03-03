@@ -95,6 +95,17 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{ $managements }}</h3>
+              <p>Management Waktu</p>
+            </div>
+            <div class="icon">
+              <i class="fa   fa-calendar-check-o"></i>
+            </div>
+          </div>
+        </div>
     </section>
   </div>
 @stop

@@ -22,18 +22,23 @@ class RoomsController extends Controller
 
     public function create(Request $request)
     {
+        $rooms  = Room::orderBy('name', 'desc')->pluck('name', 'id');
 
         $type = array(
             'Putra'         => 'Putra',
             'Putri'         => 'Putri');
 
+<<<<<<< HEAD
         return view('admin-news.room.create', compact('type'));
+=======
+        return view('admin.room.create', compact('type', 'rooms'));
+>>>>>>> ec2e2c0373ce816dbe849ae0bbee95ba0340da85
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'namerooms'  => 'required'
+            'namerooms'  => 'required|unique:romms,name'
         ]);
 
         $params = [
@@ -66,7 +71,7 @@ class RoomsController extends Controller
     {
 
         $this->validate($request, [
-            'namerooms'  => 'required'
+            'namerooms'  => 'required|unique:romms,name'
         ]);
 
         $rooms             = Room::find($id);

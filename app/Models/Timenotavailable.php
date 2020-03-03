@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Timenotavailable extends Model
 {
     protected $table   = 'time_not_available';
-    protected $guarded = [];
+    protected $fillable = ['lecturers_id', 'days_id', 'times_id'];
+    // protected $guarded = [];
 
     public function lecturer()
     {

@@ -14,6 +14,7 @@ class TimenotavailableController extends Controller
     {
         $searchlecturers   = $request->input('searchlecturers');
         $searchday         = $request->input('searchday');
+        
         $timenotavailables = Timenotavailable::whereHas('lecturer', function ($query) use ($searchlecturers)
         {
 
@@ -31,7 +32,7 @@ class TimenotavailableController extends Controller
 
         $timenotavailables = $timenotavailables->orderBy('id', 'desc')->paginate(10);
 
-        return view('admin.timenotavailable.index', compact('timenotavailables'));
+        return view('admin-news.timenotavailable.index', compact('timenotavailables'));
     }
 
     public function create(Request $request)
@@ -41,15 +42,15 @@ class TimenotavailableController extends Controller
         $days      = Day::orderBy('name_day', 'asc')->pluck('name_day', 'id');
         $times     = Time::orderBy('range', 'asc')->pluck('range', 'id');
 
-        return view('admin.timenotavailable.create', compact('lecturers', 'days', 'times'));
+        return view('admin-news.timenotavailable.create', compact('lecturers', 'days', 'times'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'lecturers' => 'required',
-            'days'      => 'required',
-            'times'     => 'required',
+            'lecturers' => 'required|unique:time_not_available,lecturers_id',
+            'days'      => 'required|unique:time_not_available,days_id',
+            'times'     => 'required|unique:time_not_available,times_id',
 
         ]);
 
@@ -73,18 +74,18 @@ class TimenotavailableController extends Controller
 
         if ($timenotavailables == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.timenotavailable.edit', compact('timenotavailables', 'lecturers', 'days', 'times'));
+        return view('admin-news.timenotavailable.edit', compact('timenotavailables', 'lecturers', 'days', 'times'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'lecturers' => 'required',
-            'days'      => 'required',
-            'times'     => 'required',
+            'lecturers' => 'required|unique:time_not_available,lecturers_id',
+            'days'      => 'required|unique:time_not_available,days_id',
+            'times'     => 'required|unique:time_not_available,times_id',
         ]);
 
         $timenotavailables               = Timenotavailable::find($id);

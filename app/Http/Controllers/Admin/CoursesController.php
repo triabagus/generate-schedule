@@ -31,7 +31,7 @@ class CoursesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'namecourses'  => 'required'
+            'namecourses'  => 'required|unique:courses,name'
         ]);
 
         $params = [
@@ -59,7 +59,7 @@ class CoursesController extends Controller
     {
 
         $this->validate($request, [
-            'namecourses'  => 'required'
+            'namecourses'  => 'required|unique:courses,name'
 
         ]);
 

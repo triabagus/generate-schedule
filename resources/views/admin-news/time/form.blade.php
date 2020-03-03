@@ -4,7 +4,7 @@
         Waktu Mulai
     </label>
     <div class="input-group bootstrap-timepicker timepicker">
-        {!! Form::text('time_begin', null, ['class' => 'form-control timepicker input-small', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Waktu Mulai']) !!}
+        {!! Form::time('time_begin', null, ['class' => 'form-control', 'required', 'value' => '13:00:00', 'placeholder' => 'Masukkan Waktu Mulai']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -12,7 +12,7 @@
         Waktu Akhir
     </label>
     <div class="input-group bootstrap-timepicker timepicker">
-        {!! Form::text('time_finish', null, ['class' => 'form-control timepicker input-small', 'required', 'maxlength' => '100', 'placeholder' => 'Masukkan Waktu Mulai']) !!}
+        {!! Form::time('time_finish', null, ['class' => 'form-control', 'required', 'value' => '13:00:00', 'placeholder' => 'Masukkan Waktu Mulai']) !!}
     </div>
 </div>
 <button class="btn btn-primary">

@@ -18,6 +18,10 @@
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('new_template/dist/css/style.min.css') }}">
+        <link href="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+
+        <!-- This Page CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('new_template/assets/libs/select2/dist/css/select2.min.css') }}">
         @yield('style')
     </head>
     <body>
@@ -73,6 +77,13 @@
     <script src="{{ asset('new_template/dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('new_template/dist/js/custom.min.js') }}"></script>
+    <!-- Sweet Alert -->
+    <script src="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.all.min.js') }}" aria-hidden="true"></script>
+    <script src="{{ asset('new_template/assets/libs/sweetalert2/sweet-alert.init.js') }}" aria-hidden="true"></script>
+    <!-- This Page JS -->
+    <script src="{{ asset('new_template/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('new_template/assets/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('new_template/dist/js/pages/forms/select2/select2.init.js') }}"></script>
         @include('admin-news._partials.js')
         @yield('script')
     </body>

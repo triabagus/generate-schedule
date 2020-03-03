@@ -16,14 +16,14 @@ class TimeController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.time.create');
+        return view('admin-news.time.create');
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'time_begin'  => 'required',
-            'time_finish' => 'required'
+            'time_begin'  => 'required|unique:times,time_begin',
+            'time_finish' => 'required|unique:times,time_finish'
         ]);
 
         $begin  = $request->input('time_begin');
@@ -47,17 +47,17 @@ class TimeController extends Controller
 
         if ($times == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.time.edit', compact('times'));
+        return view('admin-news.time.edit', compact('times'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'time_begin'  => 'required',
-            'time_finish' => 'required'
+            'time_begin'  => 'required|unique:times,time_begin',
+            'time_finish' => 'required|unique:times,time_finish'
         ]);
 
         $times              = Time::find($id);

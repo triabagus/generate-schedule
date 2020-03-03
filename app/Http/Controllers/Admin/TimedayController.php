@@ -12,8 +12,9 @@ class TimedayController extends Controller
     public function index(Request $request)
     {
         $timedays = Timeday::orderBy('id', 'desc')->paginate(10);
+        // $timedays = Timeday::with('time')->with('day')->paginate(10);
 
-        return view('admin.timeday.index', compact('timedays'));
+        return view('admin-news.timeday.index', compact('timedays'));
     }
 
     public function create(Request $request)
@@ -22,14 +23,14 @@ class TimedayController extends Controller
         $days  = Day::orderBy('name_day', 'desc')->pluck('name_day', 'id');
         $times = Time::orderBy('range', 'asc')->pluck('range', 'id');
 
-        return view('admin.timeday.create', compact('days', 'times'));
+        return view('admin-news.timeday.create', compact('days', 'times'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'days'          => 'required',
-            'times'         => 'required',
+            'days'          => 'required|unique:timedays,days_id,NULL,NULL,times_id,'.$request['times'],
+            'times'         => 'required|unique:timedays,times_id,NULL,NULL,days_id,'.$request['days'],
         ]);
 
         $params = [
@@ -50,17 +51,17 @@ class TimedayController extends Controller
 
         if ($timedays == null)
         {
-            return view('admin.layouts.404');
+            return view('admin-news.layouts.404');
         }
 
-        return view('admin.timeday.edit', compact('timedays', 'days', 'times'));
+        return view('admin-news.timeday.edit', compact('timedays', 'days', 'times'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'days'          => 'required',
-            'times'         => 'required',
+            'days'          => 'required|unique:timedays,days_id,NULL,NULL,times_id,'.$request['times'],
+            'times'         => 'required|unique:timedays,times_id,NULL,NULL,days_id,'.$request['days'],
         ]);
 
         $timedays                = Timeday::find($id);

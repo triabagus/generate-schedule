@@ -9,21 +9,31 @@ use App\Models\Schedule;
 use App\Models\Teach;
 use App\Models\Time;
 use App\Models\User;
+use App\Models\Timeday;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
     public function index(Request $request)
     {
-        $users     = User::count();
-        $courses   = Course::count();
-        $days      = Day::count();
-        $lecturers = Lecturer::count();
-        $rooms     = Room::count();
-        $teachs    = Teach::count();
-        $times     = Time::count();
-        $schedules = Schedule::count();
+        $users       = User::count();
+        $courses     = Course::count();
+        $days        = Day::count();
+        $lecturers   = Lecturer::count();
+        $rooms       = Room::count();
+        $teachs      = Teach::count();
+        $times       = Time::count();
+        $schedules   = Schedule::count();
+        $managements = Timeday::count();
 
-        return view('admin-news.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules'));
+        // return view('admin.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules', 'managements'));
+
+        return view('admin-news.site.admin', compact('users', 'courses', 'days', 'lecturers', 'rooms', 'teachs', 'times', 'schedules', 'managements'));
+
+    }
+
+    public function doc()
+    {
+        return view('doc.index');
     }
 }
