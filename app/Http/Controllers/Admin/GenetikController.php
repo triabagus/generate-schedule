@@ -101,7 +101,7 @@ class GenetikController extends Controller
         {
             $excel->sheet('Genetika', function ($sheet) use ($schedules)
             {
-                $sheet->loadView('admin.genetik.export')->with('schedules', $schedules);
+                $sheet->loadView('admin-news.genetik.export')->with('schedules', $schedules);
             });
         })->export('xlsx');
 
@@ -167,7 +167,7 @@ class GenetikController extends Controller
         }
 
         // dd($schedules); //cek crossover & mutasi
-        return view('admin.genetik.classes', compact('schedules', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer', 'rooms', 'times', 'days'));
+        return view('admin-news.genetik.classes', compact('schedules', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer', 'rooms', 'times', 'days'));
         // return view('admin.genetik.classes', compact('schedules', 'years', 'data_kromosom', 'id', 'value_schedule', 'crossover', 'mutasi', 'classes','lecturer'));
     }
 
@@ -211,7 +211,7 @@ class GenetikController extends Controller
             }
         }
 
-        return view('admin.genetik.filter', compact('lecturer','schedules','rooms','times','days','teachs')); 
+        return view('admin-news.genetik.filter', compact('lecturer','schedules','rooms','times','days','teachs')); 
     }
 
     public function showClassesSearch(int $id, Request $request)

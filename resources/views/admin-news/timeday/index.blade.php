@@ -7,7 +7,6 @@
 @section('style')
 <link href="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw.css') }}" rel="stylesheet">
 <link href="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
-
 <style>
     form.deleteedition{
         display:inline-block;
@@ -15,8 +14,8 @@
 </style>
 @stop
 
-@section('script')
 
+@section('script')
 <script src="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw.jquery.js') }}"></script>
 <script src="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw-init.js') }}"></script>
 <script src="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.all.min.js') }}" aria-hidden="true"></script>
@@ -64,30 +63,26 @@
     <div class="card">
         <div class="card-body">
         <div class="row mb-3">
-            <div class="col-7 align-self-center">
+            <div class="col align-self-center">
                 <h6 class="card-subtitle">
                     Description Timedays Blade.
                 </h6>
-                <a class="btn btn-sm btn-success" href="{{ route('admin.timeday.create') }}">
-                    <i class="ti-plus">
+                <a class="btn waves-effect waves-light btn-info" href="{{ route('admin.timeday.create') }}">
+                    <i class="fa fa-plus">
                     </i>
-                    Tambah
+                    Tambah Data
                 </a>
             </div>
-            <div class="col-5 align-self-center">
-                <div class="d-flex no-block justify-content-end align-items-center">
-                    
-                </div>
-            </div>
+            
         </div>
 
         <table class="no-wrap table-bordered table-hover table" data-tablesaw>
             <thead class="bg-info text-white">
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Hari</th>
-                    <th scope="col">Waktu</th>
-                    <th scope="col">Option</th>
+                    <th scope="col" class="border text-center">No</th>
+                    <th scope="col" class="border text-center">Hari</th>
+                    <th scope="col" class="border text-center">Waktu</th>
+                    <th scope="col" class="border text-center">Option</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,9 +91,9 @@
                     <td>{{ ($timedays->currentpage()-1) * $timedays->perpage() + $key + 1 }}</td>
                     <td>{{ $timeday->day->name_day }}</td>
                     <td>{{ $timeday->time->range }}</td>
-                    <td>
+                    <td class="d-flex justify-content-around">
                         <div class="button-group">
-                            <a class="btn btn-sm btn-primary" href="{{ route('admin.timeday.edit', $timeday->id) }}">
+                            <a class="btn waves-effect waves-light btn-warning mr-3" href="{{ route('admin.timeday.edit', $timeday->id) }}">
                                 <i class="ti-pencil">
                                 </i>
                                 Ubah
@@ -108,7 +103,7 @@
                             {!! Form::hidden('_method', 'DELETE') !!}
                             {!! Form::button('
                             <i class="ti-trash"></i>
-                            Hapus', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm sa-removeData', 'data-file'=> 'delete-'.$timeday->id]) !!}
+                            Hapus', ['type' => 'submit', 'class' => 'btn waves-effect waves-light btn-danger ml-3 sa-removeData', 'data-file'=> 'delete-'.$timeday->id]) !!}
                             {!! Form::close() !!}
 
                         </div>

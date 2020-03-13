@@ -25,7 +25,7 @@ class CoursesController extends Controller
     public function create(Request $request)
     {
 
-        return view('admin.courses.create');
+        return view('admin-news.courses.create');
     }
 
     public function store(Request $request)

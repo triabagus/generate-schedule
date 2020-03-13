@@ -8,7 +8,7 @@
 <style type="text/css">
 .panel-body{
         width:auto;
-        height:auto;z
+        height:auto;
         overflow-x:auto;
     }
 </style>
@@ -46,7 +46,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     
-                                    {!! Form::submit('Search',['class'=>'btn btn-default btn-block']) !!}
+                                    {!! Form::submit('Search',['class'=>'btn waves-effect waves-light btn-success ml-3']) !!}
                                 </div>
                             </div>
                             <div class="col-md-12">

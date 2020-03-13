@@ -29,18 +29,14 @@ class LecturersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-<<<<<<< HEAD
-            // 'nidnlecturer'   => 'required',
-            'name'           => 'required',
-=======
-            'nidnlecturer'   => 'required',
+            
+            
             'name'           => 'required|unique:lecturers,name',
->>>>>>> ec2e2c0373ce816dbe849ae0bbee95ba0340da85
 
         ]);
 
         $params = [
-            // 'nidn'           => $request->input('nidnlecturer'),
+            
             'name'           => $request->input('name'),
         ];
 
@@ -64,17 +60,12 @@ class LecturersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-<<<<<<< HEAD
-            'name'           => 'required',
-=======
-            'nidnlecturer'   => 'required',
+    
             'name'           => 'required|unique:lecturers,name',
->>>>>>> ec2e2c0373ce816dbe849ae0bbee95ba0340da85
 
         ]);
 
         $lecturers                 = Lecturer::find($id);
-        // $lecturers->nidn           = $request->input('nidnlecturer');
         $lecturers->name           = $request->input('name');
         $lecturers->save();
 

@@ -64,30 +64,35 @@
     <div class="card">
         <div class="card-body">
         <div class="row mb-3">
-            <div class="col-7 align-self-center">
+            <div class="col align-self-center">
                 <h6 class="card-subtitle">
                     Description User Blade.
                 </h6>
-                <a class="btn btn-sm btn-success" href="{{ route('admin.user.create') }}">
-                    <i class="ti-plus">
+                <a class="btn waves-effect waves-light btn-info mr-1" href="{{ route('admin.user.create') }}">
+                    <i class="fa fa-plus">
                     </i>
-                    Tambah
+                    Tambah Data
                 </a>
             </div>
-            <div class="col-5 align-self-center">
-                <div class="d-flex no-block justify-content-end align-items-center">
-                    
-                </div>
+            <div id="file_export_filter"    class="dataTables_filter ml-2">
+                {!! Form::open(['role' => 'form', 'route' => 'admin.user', 'method' =>'get']) !!}
+                <label>
+                    {!! Form::text('searchname', Input::get('searchname')?: null, ['class' => 'form-control mt-3', 'placeholder' => 'Mencari Berdasarkan Nama']) !!}
+                </label>
+                    <button type="submit" class="btn waves-effect waves-light btn-success ml-3">
+                    <span>Search</span>
+                    </button>
+                    {!! Form::close() !!}
             </div>
         </div>
 
         <table class="no-wrap table-bordered table-hover table" data-tablesaw>
             <thead class="bg-info text-white">
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Lengkap</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Option</th>
+                    <th scope="col" class="border text-center">No</th>
+                    <th scope="col" class="border text-center">Nama</th>
+                    <th scope="col" class="border text-center">Email</th>
+                    <th scope="col" class="border text-center">Option</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,9 +101,9 @@
                     <td>{{ ($users->currentpage()-1) * $users->perpage() + $key + 1 }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>
+                    <td class="d-flex justify-content-around">
                         <div class="button-group">
-                            <a class="btn btn-sm btn-primary" href="{{ route('admin.user.edit', $user->id) }}">
+                            <a class="btn waves-effect waves-light btn-warning mr-3" href="{{ route('admin.user.edit', $user->id) }}">
                                 <i class="ti-pencil">
                                 </i>
                                 Ubah
@@ -108,7 +113,7 @@
                             {!! Form::hidden('_method', 'DELETE') !!}
                             {!! Form::button('
                             <i class="ti-trash"></i>
-                            Hapus', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm sa-removeData', 'data-file'=> 'delete-'.$user->id]) !!}
+                            Hapus', ['type' => 'submit', 'class' => 'btn waves-effect waves-light btn-danger ml-3 sa-removeData', 'data-file'=> 'delete-'.$user->id]) !!}
                             {!! Form::close() !!}
 
                         </div>

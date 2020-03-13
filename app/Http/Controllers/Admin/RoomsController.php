@@ -28,17 +28,16 @@ class RoomsController extends Controller
             'Putra'         => 'Putra',
             'Putri'         => 'Putri');
 
-<<<<<<< HEAD
-        return view('admin-news.room.create', compact('type'));
-=======
-        return view('admin.room.create', compact('type', 'rooms'));
->>>>>>> ec2e2c0373ce816dbe849ae0bbee95ba0340da85
+ 
+        return view('admin-news.room.create', compact('type','rooms'));
+
+        // return view('admin.room.create', compact('type', 'rooms'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'namerooms'  => 'required|unique:romms,name'
+            'namerooms'  => 'required|unique:rooms,name'
         ]);
 
         $params = [
@@ -64,14 +63,14 @@ class RoomsController extends Controller
             'Putra'         => 'Putra',
             'Putri'         => 'Putri');
 
-        return view('admin.room.edit', compact('rooms', 'type'));
+        return view('admin-news.room.edit', compact('rooms', 'type'));
     }
 
     public function update(Request $request, $id)
     {
 
         $this->validate($request, [
-            'namerooms'  => 'required|unique:romms,name'
+            'namerooms'  => 'required|unique:rooms,name'
         ]);
 
         $rooms             = Room::find($id);

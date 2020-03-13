@@ -23,13 +23,14 @@
 <script src="{{ asset('new_template/assets/libs/sweetalert2/sweet-alert.init.js') }}" aria-hidden="true"></script>
 @stop
 
+
 @section('content')
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="page-breadcrumb">
     <div class="row">
-        <div class="col-5 align-self-center">
+        <div class="col align-self-center">
             <h4 class="page-title">{{ $title }}</h4>
             <div class="d-flex align-items-center">
 
@@ -64,31 +65,27 @@
     <div class="card">
         <div class="card-body">
         <div class="row mb-3">
-            <div class="col-7 align-self-center">
+            <div class="col align-self-center">
                 <h6 class="card-subtitle">
                     Description Teach Blade.
                 </h6>
-                <a class="btn btn-sm btn-success" href="{{ route('admin.teach.create') }}">
-                    <i class="ti-plus">
+                <a class="btn waves-effect waves-light btn-info mr-1" href="{{ route('admin.teach.create') }}">
+                    <i class="fa fa-plus">
                     </i>
-                    Tambah
+                    Tambah Data
                 </a>
             </div>
-            <div class="col-5 align-self-center">
-                <div class="d-flex no-block justify-content-end align-items-center">
-                    
-                </div>
-            </div>
+            
         </div>
 
         <table class="no-wrap table-bordered table-hover table" data-tablesaw>
             <thead class="bg-info text-white">
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Guru</th>
-                    <th scope="col">Mata pelajaran</th>
-                    <th scope="col">Kelas</th>
-                    <th scope="col">Option</th>
+                    <th scope="col" class="border">No</th>
+                    <th scope="col" class="border text-center">Nama Guru</th>
+                    <th scope="col" class="border text-center">pelajaran</th>
+                    <th scope="col" class="border text-center">Kelas</th>
+                    <th scope="col" class="border text-center">Option</th>
                 </tr>
             </thead>
             <tbody>
@@ -98,9 +95,9 @@
                     <td>{{ $teach->lecturer->name }}</td>
                     <td>{{ $teach->course->name }}</td>
                     <td>{{ $teach->room->name }}</td>
-                    <td>
-                        <div class="button-group">
-                            <a class="btn btn-sm btn-primary" href="{{ route('admin.teach.edit', $teach->id) }}">
+                    <td class="d-flex justify-content-around">
+                        {{-- <div class="button-group"> --}}
+                            <a class="btn waves-effect waves-light btn-warning mr-3" href="{{ route('admin.teach.edit', $teach->id) }}">
                                 <i class="ti-pencil">
                                 </i>
                                 Ubah
@@ -110,10 +107,10 @@
                             {!! Form::hidden('_method', 'DELETE') !!}
                             {!! Form::button('
                             <i class="ti-trash"></i>
-                            Hapus', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm sa-removeData', 'data-file'=> 'delete-'.$teach->id]) !!}
+                            Hapus', ['type' => 'submit', 'class' => 'btn waves-effect waves-light btn-danger ml-3 sa-removeData', 'data-file'=> 'delete-'.$teach->id]) !!}
                             {!! Form::close() !!}
 
-                        </div>
+                        {{-- </div> --}}
                     </td>
                 </tr>
             @endforeach    

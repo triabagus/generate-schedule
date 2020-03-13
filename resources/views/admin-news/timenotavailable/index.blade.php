@@ -64,31 +64,27 @@
     <div class="card">
         <div class="card-body">
         <div class="row mb-3">
-            <div class="col-7 align-self-center">
+            <div class="col align-self-center">
                 <h6 class="card-subtitle">
                     Description Timenotavailables Blade.
                 </h6>
-                <a class="btn btn-sm btn-success" href="{{ route('admin.timenotavailable.create') }}">
-                    <i class="ti-plus">
+                <a class="btn waves-effect waves-light btn-info mr-1" href="{{ route('admin.timenotavailable.create') }}">
+                    <i class="fa fa-plus">
                     </i>
-                    Tambah
+                    Tambah Data
                 </a>
             </div>
-            <div class="col-5 align-self-center">
-                <div class="d-flex no-block justify-content-end align-items-center">
-                    
-                </div>
-            </div>
+            
         </div>
 
         <table class="no-wrap table-bordered table-hover table" data-tablesaw>
             <thead class="bg-info text-white">
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Guru</th>
-                    <th scope="col">Hari</th>
-                    <th scope="col">Waktu</th>
-                    <th scope="col">Option</th>
+                    <th scope="col" class="border text-center">No</th>
+                    <th scope="col" class="border text-center">Guru</th>
+                    <th scope="col" class="border text-center">Hari</th>
+                    <th scope="col" class="border text-center">Waktu</th>
+                    <th scope="col" class="border text-center">Option</th>
                 </tr>
             </thead>
             <tbody>
@@ -98,9 +94,9 @@
                     <td>{{ $timenotavailable->lecturer->name }}</td>
                     <td>{{ $timenotavailable->day->name_day}}</td>
                     <td>{{ $timenotavailable->time->range }}</td>
-                    <td>
+                    <td class="d-flex justify-content-around">
                         <div class="button-group">
-                            <a class="btn btn-sm btn-primary" href="{{ route('admin.timenotavailable.edit', $timenotavailable->id) }}">
+                            <a class="btn waves-effect waves-light btn-warning mr-3" href="{{ route('admin.timenotavailable.edit', $timenotavailable->id) }}">
                                 <i class="ti-pencil">
                                 </i>
                                 Ubah
@@ -110,7 +106,7 @@
                             {!! Form::hidden('_method', 'DELETE') !!}
                             {!! Form::button('
                             <i class="ti-trash"></i>
-                            Hapus', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm sa-removeData', 'data-file'=> 'delete-'.$timenotavailable->id]) !!}
+                            Hapus', ['type' => 'submit', 'class' => 'btn waves-effect waves-light btn-danger ml-3 sa-removeData', 'data-file'=> 'delete-'.$timenotavailable->id]) !!}
                             {!! Form::close() !!}
 
                         </div>

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin-news.layouts.master')
 
 @section('title')
 {{ $title= 'Filter Class Hasil Generate Algoritma' }}
@@ -46,16 +46,7 @@
                         <h3 class="box-title">
                             {{ $title }}
                         </h3>
-                        <div class="box-tools pull-right">
-                            <button class="btn btn-box-tool" data-widget="collapse" type="button">
-                                <i class="fa fa-minus">
-                                </i>
-                            </button>
-                            <button class="btn btn-box-tool" data-widget="remove" type="button">
-                                <i class="fa fa-times">
-                                </i>
-                            </button>
-                        </div>
+                        
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -72,7 +63,7 @@
                             <form name="_token" action="{{ route('admin.generates.filterTeacher', Request::segment(4) ) }}" id="teachName-dropdown" method="get">
                                 {{ csrf_field() }}
                                 @if(!empty($lecturer))
-                                    <select class="form-control select2" id="teachName" name="teachName">
+                                    <select class="form-control select" id="teachName" name="teachName">
                                     <option value="">--- Pilih Guru ---</option>
                                     @foreach($lecturer as $key => $lecturers)
                                         <option value="{{ $lecturers->name }}">
@@ -91,7 +82,7 @@
                             <form name="_token" action="{{ route('admin.generates.filterClass', Request::segment(4) ) }}" id="className-dropdown" method="get">
                                 {{ csrf_field() }}
                                 @if(!empty($rooms))
-                                    <select class="form-control select2" id="className" name="className">
+                                    <select class="form-control select" id="className" name="className">
                                     <option value="">--- Pilih Kelas ---</option>
                                     @foreach($rooms as $key => $room)
                                         <option value="{{ $room->name }}">
