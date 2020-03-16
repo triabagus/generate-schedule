@@ -63,7 +63,7 @@
                                 <li class="sidebar-item">
                                     <a href="{{ route('admin.times') }}" class="sidebar-link">
                                         <i class="far fa-clock"></i>
-                                        <span class="hide-menu"> Jam</span>
+                                        <span class="hide-menu"> Jam Pelajaran</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
@@ -105,7 +105,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('admin.teachs') }}" aria-expanded="false">
                                 <i class="ti-agenda"></i>
-                                <span class="hide-menu">Kegiatan</span>
+                                <span class="hide-menu">Kegiatan Pembelajaran</span>
                             </a>
                         </li>
                         

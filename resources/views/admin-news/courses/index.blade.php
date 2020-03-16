@@ -4,7 +4,7 @@
 {{ $title= 'Mata Pelajaran' }}
 @stop
 @section('style')
-<link href="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw.css') }}" rel="stylesheet">
+    <link href="{{ asset('new_template/assets/libs/tablesaw/dist/tablesaw.css') }}" rel="stylesheet">
 <link href="{{ asset('new_template/assets/libs/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
 <style>
@@ -22,7 +22,6 @@
 <script src="{{ asset('new_template/assets/libs/sweetalert2/sweet-alert.init.js') }}" aria-hidden="true"></script>
 @stop
 
-@section('content')
 
 
 @section('content')    

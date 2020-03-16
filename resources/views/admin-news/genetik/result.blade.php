@@ -168,11 +168,7 @@
                 </div>
         
 
-            <div class="col-5 align-self-center">
-                <div class="d-flex no-block justify-content-end align-items-center">
-                    
-                </div>
-            </div>
+            
         </div>
 
     </div>

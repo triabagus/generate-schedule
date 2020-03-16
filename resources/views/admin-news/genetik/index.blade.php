@@ -82,7 +82,7 @@
                 <div class="form-group">
                 <label>
                     Kromosom
-                </label>
+                </label><br>
                     {!! Form::select('kromosom', [
                         '1' => '1',
                         '2' => '2',
@@ -97,7 +97,7 @@
                 <div class="form-group">
                 <label>
                     Generasi
-                </label>
+                </label><br>
                     {!! Form::select('generasi', [
                         '1' => '1',
                         '2' => '2',
