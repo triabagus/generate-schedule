@@ -35,7 +35,7 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url({{ asset('new_template/assets/images/background/login-register.jpg')}}) no-repeat center center;">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url({{ asset('new_template/assets/images/background/login.jpg')}}) no-repeat center bottom;">
             <div class="auth-box on-sidebar">
                 <div id="loginform">
                     <div class="logo mb-4">
